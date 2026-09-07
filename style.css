@@ -1,1 +1,71 @@
+/* NAV ACTIONS */
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+}
+
+.signup-btn {
+    padding: 10px 18px;
+    border: 1px solid #30323c;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.signup-btn:hover {
+    background: #151720;
+}
+
+
+/* HERO BUTTONS */
+
+.hero-buttons {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.signup-main,
+.browse-main,
+.create-main {
+    padding: 14px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.signup-main {
+    background: white;
+    color: #08090d;
+}
+
+.browse-main {
+    border: 1px solid #30323c;
+    color: white;
+}
+
+.create-main {
+    background: linear-gradient(90deg, #9c8cff, #6bdcff);
+    color: #08090d;
+    box-shadow: 0 0 30px rgba(130, 120, 255, 0.2);
+}
+
+.signup-main:hover,
+.browse-main:hover,
+.create-main:hover {
+    transform: translateY(-2px);
+}
+
+.browse-main:hover {
+    background: #151720;
+}
+
+.create-main:hover {
+    box-shadow: 0 0 40px rgba(130, 120, 255, 0.35);
+}
