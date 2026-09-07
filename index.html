@@ -6,212 +6,277 @@
 
     <title>CreateHub — Imagine. Create. Share.</title>
 
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <!-- NAVBAR -->
+    <nav class="navbar">
 
-    <nav>
-    <div class="logo">
-        Create<span>Hub</span>
-    </div>
-
-    <div class="nav-links">
-        <a href="#create">Create</a>
-        <a href="#trending">Browse</a>
-        <a href="#">Community</a>
-    </div>
-
-    <div class="nav-actions">
-        <a href="#" class="signup-btn">Sign Up</a>
-    </div>
-</nav>
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <div class="badge">
-                ✨ AI-powered creativity
-            </div>
-
-            <h1>
-                Turn your ideas<br>
-                into <span>reality.</span>
-            </h1>
-
-            <p>
-                Create poetry, fashion, cars, artwork and anything
-                you can imagine. Use AI to bring your ideas to life
-                and share them with the world.
-            </p>
-<div class="hero-buttons">
-
-    <a href="#" class="signup-main">
-        Sign Up
-    </a>
-
-    <a href="#trending" class="browse-main">
-        Start Browsing
-    </a>
-
-    <a href="creator.html" class="create-main">
-        ✨ Create
-    </a>
-
-</div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CREATE -->
-
-    <section class="section" id="create">
-
-        <h2 class="section-title">
-            What will you create?
-        </h2>
-
-        <p class="section-subtitle">
-            Choose a category and let your imagination take over.
-        </p>
-
-        <div class="categories">
-
-            <div class="category">
-                <div class="category-icon">🚗</div>
-                <h3>Car Designs</h3>
-                <p>
-                    Create futuristic cars, supercars and unique
-                    automotive concepts.
-                </p>
-            </div>
-
-            <div class="category">
-                <div class="category-icon">👕</div>
-                <h3>Fashion</h3>
-                <p>
-                    Design shirts, outfits, shoes and completely
-                    new clothing concepts.
-                </p>
-            </div>
-
-            <div class="category">
-                <div class="category-icon">🎨</div>
-                <h3>Artwork</h3>
-                <p>
-                    Turn your imagination into stunning visual
-                    creations with AI.
-                </p>
-            </div>
-
-            <div class="category">
-                <div class="category-icon">📝</div>
-                <h3>Poetry</h3>
-                <p>
-                    Create poems, stories and written pieces
-                    in your own style.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- TRENDING -->
-
-    <section class="section trending" id="trending">
-
-        <h2 class="section-title">
-            🔥 Trending creations
-        </h2>
-
-        <p class="section-subtitle">
-            Discover what the community is creating.
-        </p>
-
-        <div class="creations">
-
-            <div class="creation">
-                <div class="creation-image">
-                    🚀
-                </div>
-
-                <div class="creation-info">
-                    <h3>Neon Future</h3>
-                    <div class="creator">
-                        by CreatorOne · ❤️ 248
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="creation">
-                <div class="creation-image">
-                    👕
-                </div>
-
-                <div class="creation-info">
-                    <h3>Cyber Streetwear</h3>
-                    <div class="creator">
-                        by DesignLab · ❤️ 193
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="creation">
-                <div class="creation-image">
-                    🌌
-                </div>
-
-                <div class="creation-info">
-                    <h3>Midnight Dreams</h3>
-                    <div class="creator">
-                        by PixelMind · ❤️ 167
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CTA -->
-
-    <section class="cta">
-
-        <h2>Your idea starts here.</h2>
-
-        <p>
-            You imagine it. AI helps you create it.
-        </p>
-
-        <a href="#create" class="primary">
-            ✨ Create Something
+        <a href="index.html" class="logo">
+            Create<span>Hub</span>
         </a>
 
-    </section>
+        <div class="nav-links">
+            <a href="#create">Create</a>
+            <a href="#trending">Browse</a>
+            <a href="#community">Community</a>
+        </div>
+
+        <a href="#" class="nav-signup">
+            Sign Up
+        </a>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    ✨ AI-powered creativity
+                </div>
+
+                <h1>
+                    Turn your ideas<br>
+                    into <span>reality.</span>
+                </h1>
+
+                <p>
+                    Create poetry, fashion, cars, artwork and anything
+                    you can imagine. Use AI to bring your ideas to life
+                    and share them with the world.
+                </p>
+
+                <!-- THREE MAIN BUTTONS -->
+                <div class="hero-buttons">
+
+                    <a href="#" class="button signup-main">
+                        Sign Up
+                    </a>
+
+                    <a href="#trending" class="button browse-main">
+                        Start Browsing
+                    </a>
+
+                    <a href="creator.html" class="button create-main">
+                        ✨ Create
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CREATION CATEGORIES -->
+        <section class="section" id="create">
+
+            <div class="section-heading">
+                <h2>What will you create?</h2>
+
+                <p>
+                    Choose a category and let your imagination take over.
+                </p>
+            </div>
+
+
+            <div class="categories">
+
+                <a href="creator.html" class="category">
+
+                    <div class="category-icon">
+                        🚗
+                    </div>
+
+                    <h3>Car Designs</h3>
+
+                    <p>
+                        Create futuristic cars, supercars and
+                        unique automotive concepts.
+                    </p>
+
+                </a>
+
+
+                <a href="creator.html" class="category">
+
+                    <div class="category-icon">
+                        👕
+                    </div>
+
+                    <h3>Fashion</h3>
+
+                    <p>
+                        Design shirts, outfits, shoes and completely
+                        new clothing concepts.
+                    </p>
+
+                </a>
+
+
+                <a href="creator.html" class="category">
+
+                    <div class="category-icon">
+                        🎨
+                    </div>
+
+                    <h3>Artwork</h3>
+
+                    <p>
+                        Turn your imagination into stunning visual
+                        creations with AI.
+                    </p>
+
+                </a>
+
+
+                <a href="creator.html" class="category">
+
+                    <div class="category-icon">
+                        📝
+                    </div>
+
+                    <h3>Poetry</h3>
+
+                    <p>
+                        Create poems, stories and written pieces
+                        in your own style.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRENDING -->
+        <section class="section trending" id="trending">
+
+            <div class="section-heading">
+                <h2>🔥 Trending creations</h2>
+
+                <p>
+                    Discover what the community is creating.
+                </p>
+            </div>
+
+
+            <div class="creations">
+
+                <article class="creation">
+
+                    <div class="creation-image car-art">
+                        🚗
+                    </div>
+
+                    <div class="creation-info">
+
+                        <h3>Neon Future</h3>
+
+                        <p>
+                            by CreatorOne · ❤️ 248
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="creation">
+
+                    <div class="creation-image fashion-art">
+                        👕
+                    </div>
+
+                    <div class="creation-info">
+
+                        <h3>Cyber Streetwear</h3>
+
+                        <p>
+                            by DesignLab · ❤️ 193
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="creation">
+
+                    <div class="creation-image art-art">
+                        🌌
+                    </div>
+
+                    <div class="creation-info">
+
+                        <h3>Midnight Dreams</h3>
+
+                        <p>
+                            by PixelMind · ❤️ 167
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMMUNITY -->
+        <section class="community" id="community">
+
+            <div class="community-content">
+
+                <span class="small-label">
+                    YOUR CREATIVITY. YOUR WORLD.
+                </span>
+
+                <h2>
+                    Create something<br>
+                    people haven't seen before.
+                </h2>
+
+                <p>
+                    Make it with AI. Share it with the community.
+                    Discover what other creators are imagining.
+                </p>
+
+                <a href="creator.html" class="button create-main">
+                    ✨ Start Creating
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
 
 
     <!-- FOOTER -->
-
     <footer>
 
-        <div>
-            © 2026 CreateHub
+        <div class="footer-logo">
+            Create<span>Hub</span>
         </div>
 
-        <div>
+        <p>
             Imagine · Create · Share
-        </div>
+        </p>
+
+        <p>
+            © 2026 CreateHub
+        </p>
 
     </footer>
 
