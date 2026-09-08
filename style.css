@@ -909,3 +909,91 @@ footer {
     }
 
 }
+/* ✨ Premium button hover effect */
+.btn,
+button {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn::before,
+button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.btn:hover,
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(120, 180, 255, 0.35);
+}
+
+.btn:hover::before,
+button:hover::before {
+    left: 150%;
+}
+/* 🌌 Ambient animated background */
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    background: #536dff;
+    top: -200px;
+    left: -150px;
+    animation: ambientMove1 12s ease-in-out infinite alternate;
+}
+
+body::after {
+    background: #8b5cf6;
+    right: -200px;
+    bottom: -200px;
+    animation: ambientMove2 15s ease-in-out infinite alternate;
+}
+
+@keyframes ambientMove1 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(180px, 120px) scale(1.25);
+    }
+}
+
+@keyframes ambientMove2 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(-160px, -100px) scale(1.3);
+    }
+}
