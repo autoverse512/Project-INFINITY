@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,12 @@
 
 <body>
 
+    <!-- NAVBAR -->
     <nav class="navbar">
 
-        <a href="index.html" class="logo">∞ INFINITY</a>
+        <a href="index.html" class="logo">
+            ∞ INFINITY
+        </a>
 
         <a href="index.html" class="nav-signup">
             Home
@@ -22,13 +26,17 @@
     </nav>
 
 
+    <!-- SIGN UP -->
     <main class="signup-page">
 
         <div class="signup-container">
 
+            <!-- HEADER -->
             <div class="signup-header">
 
-                <div class="signup-icon">∞</div>
+                <div class="signup-icon">
+                    ∞
+                </div>
 
                 <span class="section-label">
                     JOIN INFINITY
@@ -47,10 +55,15 @@
             </div>
 
 
+            <!-- FORM -->
             <form id="signup-form">
 
+                <!-- USERNAME -->
                 <div class="form-group">
-                    <label for="username">Username</label>
+
+                    <label for="username">
+                        Username
+                    </label>
 
                     <input
                         type="text"
@@ -58,11 +71,16 @@
                         placeholder="Choose a username"
                         required
                     >
+
                 </div>
 
 
+                <!-- NICKNAME -->
                 <div class="form-group">
-                    <label for="nickname">Nickname</label>
+
+                    <label for="nickname">
+                        Nickname
+                    </label>
 
                     <input
                         type="text"
@@ -70,11 +88,16 @@
                         placeholder="What should we call you?"
                         required
                     >
+
                 </div>
 
 
+                <!-- EMAIL -->
                 <div class="form-group">
-                    <label for="email">Email</label>
+
+                    <label for="email">
+                        Email
+                    </label>
 
                     <input
                         type="email"
@@ -82,11 +105,16 @@
                         placeholder="you@example.com"
                         required
                     >
+
                 </div>
 
 
+                <!-- PASSWORD -->
                 <div class="form-group">
-                    <label for="password">Password</label>
+
+                    <label for="password">
+                        Password
+                    </label>
 
                     <input
                         type="password"
@@ -95,48 +123,70 @@
                         minlength="6"
                         required
                     >
+
                 </div>
 
 
+                <!-- PHONE + COUNTRY -->
                 <div class="form-row">
 
                     <div class="form-group">
-                        <label for="phone">Phone</label>
+
+                        <label for="phone">
+                            Phone
+                        </label>
 
                         <input
                             type="tel"
                             id="phone"
                             placeholder="Phone number"
                         >
+
                     </div>
 
 
                     <div class="form-group">
-                        <label for="country">Country</label>
+
+                        <label for="country">
+                            Country
+                        </label>
 
                         <input
                             type="text"
                             id="country"
                             placeholder="Country"
                         >
+
                     </div>
 
                 </div>
 
 
-                <button type="submit" class="button signup-submit">
+                <!-- SUBMIT -->
+                <button
+                    type="submit"
+                    class="button signup-submit"
+                    id="signup-button"
+                >
                     Create Account
                 </button>
 
 
+                <!-- MESSAGE -->
                 <p id="signup-message"></p>
 
             </form>
 
 
+            <!-- LOGIN -->
             <div class="login-link">
+
                 Already have an account?
-                <a href="#">Log in</a>
+
+                <a href="#">
+                    Log in
+                </a>
+
             </div>
 
         </div>
@@ -144,96 +194,211 @@
     </main>
 
 
-    <!-- Supabase -->
+    <!-- SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
     <script>
 
-        const SUPABASE_URL = "https://ppsuunamsabnepjlcfyz.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwc3V1bmFtc2FibmVwamxjZnl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NTk1NzgsImV4cCI6MjEwNDUzNTU3OH0.iua178hKtB6K7UbLFr1m2-SEpF9X7l8SErlULqOxHB0";
+        /* =========================================
+           SUPABASE CONFIGURATION
+        ========================================= */
 
-        const supabaseClient = supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_ANON_KEY
+        const SUPABASE_URL =
+            "https://ppsuunamsabnepjlcfyz.supabase.co";
+
+        const SUPABASE_ANON_KEY =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwc3V1bmFtc2FibmVwamxjZnl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NTk1NzgsImV4cCI6MjEwNDUzNTU3OH0.iua178hKtB6K7UbLFr1m2-SEpF9X7l8SErlULqOxHB0";
+
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_ANON_KEY
+            );
+
+
+        /* =========================================
+           GET FORM ELEMENTS
+        ========================================= */
+
+        const form =
+            document.getElementById("signup-form");
+
+        const message =
+            document.getElementById("signup-message");
+
+        const signupButton =
+            document.getElementById("signup-button");
+
+
+        /* =========================================
+           SIGN UP
+        ========================================= */
+
+        form.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                /* Get form values */
+
+                const username =
+                    document
+                        .getElementById("username")
+                        .value
+                        .trim();
+
+
+                const nickname =
+                    document
+                        .getElementById("nickname")
+                        .value
+                        .trim();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById("password")
+                        .value;
+
+
+                const phone =
+                    document
+                        .getElementById("phone")
+                        .value
+                        .trim();
+
+
+                const country =
+                    document
+                        .getElementById("country")
+                        .value
+                        .trim();
+
+
+                /* Check required fields */
+
+                if (!username || !nickname || !email || !password) {
+
+                    message.textContent =
+                        "Please fill in all required fields.";
+
+                    return;
+                }
+
+
+                /* Disable button */
+
+                signupButton.disabled = true;
+
+                signupButton.textContent =
+                    "Creating Account...";
+
+
+                message.textContent =
+                    "Creating your account...";
+
+
+                /* =========================================
+                   CREATE SUPABASE AUTH ACCOUNT
+                ========================================= */
+
+                const { data, error } =
+                    await supabaseClient.auth.signUp({
+
+                        email: email,
+
+                        password: password,
+
+                        options: {
+
+                            data: {
+
+                                username: username,
+
+                                nickname: nickname,
+
+                                phone: phone,
+
+                                country: country
+
+                            }
+
+                        }
+
+                    });
+
+
+                /* =========================================
+                   HANDLE ERROR
+                ========================================= */
+
+                if (error) {
+
+                    console.error(
+                        "Signup error:",
+                        error
+                    );
+
+                    message.textContent =
+                        "Error: " + error.message;
+
+                    signupButton.disabled = false;
+
+                    signupButton.textContent =
+                        "Create Account";
+
+                    return;
+                }
+
+
+                /* =========================================
+                   SUCCESS
+                ========================================= */
+
+                if (data && data.user) {
+
+                    if (data.session) {
+
+                        message.textContent =
+                            "Account created successfully! 🎉";
+
+                    } else {
+
+                        message.textContent =
+                            "Account created! 🎉 Please check your email to verify your account.";
+
+                    }
+
+
+                    form.reset();
+
+                }
+
+
+                /* Enable button again */
+
+                signupButton.disabled = false;
+
+                signupButton.textContent =
+                    "Create Account";
+
+            }
+
         );
-
-
-        const form = document.getElementById("signup-form");
-        const message = document.getElementById("signup-message");
-
-
-        form.addEventListener("submit", async function(event) {
-
-            event.preventDefault();
-
-            message.textContent = "Creating your account...";
-
-
-            const username =
-                document.getElementById("username").value.trim();
-
-            const nickname =
-                document.getElementById("nickname").value.trim();
-
-            const email =
-                document.getElementById("email").value.trim();
-
-            const password =
-                document.getElementById("password").value;
-
-            const phone =
-                document.getElementById("phone").value.trim();
-
-            const country =
-                document.getElementById("country").value.trim();
-
-
-            // Create the authentication account
-const { data, error } = await supabaseClient.auth.signUp({
-    email: email,
-    password: password,
-    options: {
-        data: {
-            username: username,
-            nickname: nickname,
-            phone: phone || null,
-            country: country || null
-        }
-    }
-});
-
-
-            if (error) {
-
-                message.textContent =
-                    "Error: " + error.message;
-
-                return;
-            }
-
-
-
-
-
-            if (profileError) {
-
-                message.textContent =
-                    "Account created, but profile could not be saved.";
-
-                console.error(profileError);
-
-                return;
-            }
-
-
-            message.textContent =
-                "Account created successfully! 🎉";
-
-            form.reset();
-
-        });
 
     </script>
 
 </body>
+
 </html>
