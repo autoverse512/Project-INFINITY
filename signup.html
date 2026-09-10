@@ -189,11 +189,18 @@
 
 
             // Create the authentication account
-            const { data, error } =
-                await supabaseClient.auth.signUp({
-                    email: email,
-                    password: password
-                });
+const { data, error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+        data: {
+            username: username,
+            nickname: nickname,
+            phone: phone || null,
+            country: country || null
+        }
+    }
+});
 
 
             if (error) {
