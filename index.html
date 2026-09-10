@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,9 @@
     <!-- NAVBAR -->
     <nav class="navbar">
 
-<a href="#" class="logo">∞ INFINITY</a>
+        <a href="#" class="logo">
+            ∞ INFINITY
+        </a>
 
         <div class="nav-links">
             <a href="#create">Create</a>
@@ -22,9 +25,14 @@
             <a href="#community">Community</a>
         </div>
 
-<a href="signup.html" class="nav-signup">
-    Sign Up
-</a>
+        <!-- ACCOUNT / SIGN UP -->
+        <div id="account-area">
+
+            <a href="signup.html" class="nav-signup" id="signup-link">
+                Sign Up
+            </a>
+
+        </div>
 
     </nav>
 
@@ -51,13 +59,13 @@
                 of AI and share your creations with the world.
             </p>
 
-
-            <!-- THREE MAIN BUTTONS -->
             <div class="hero-buttons">
 
-<a href="signup.html" class="button signup-button">
-    Sign Up
-</a>
+                <a href="signup.html"
+                   class="button signup-button"
+                   id="hero-signup-button">
+                    Sign Up
+                </a>
 
                 <a href="#browse" class="button browse-button">
                     Start Browsing
@@ -98,12 +106,10 @@
 
         <div class="categories">
 
-            <!-- CAR -->
             <a href="creator.html" class="category car-card">
 
                 <div class="category-top">
                     <div class="category-icon">🚗</div>
-
                     <span class="arrow">↗</span>
                 </div>
 
@@ -117,12 +123,10 @@
             </a>
 
 
-            <!-- CLOTHING -->
             <a href="creator.html" class="category clothing-card">
 
                 <div class="category-top">
                     <div class="category-icon">👕</div>
-
                     <span class="arrow">↗</span>
                 </div>
 
@@ -136,12 +140,10 @@
             </a>
 
 
-            <!-- ART -->
             <a href="creator.html" class="category art-card">
 
                 <div class="category-top">
                     <div class="category-icon">🎨</div>
-
                     <span class="arrow">↗</span>
                 </div>
 
@@ -155,12 +157,10 @@
             </a>
 
 
-            <!-- POETRY -->
             <a href="creator.html" class="category poetry-card">
 
                 <div class="category-top">
                     <div class="category-icon">✒️</div>
-
                     <span class="arrow">↗</span>
                 </div>
 
@@ -184,6 +184,7 @@
         <div class="section-heading browse-heading">
 
             <div>
+
                 <span class="section-label">
                     DISCOVER
                 </span>
@@ -195,6 +196,7 @@
                 <p>
                     Discover what other creators are imagining.
                 </p>
+
             </div>
 
             <a href="#" class="view-all">
@@ -206,8 +208,6 @@
 
         <div class="creations">
 
-
-            <!-- CREATION 1 -->
             <article class="creation">
 
                 <div class="creation-image car-art">
@@ -222,10 +222,7 @@
 
                     <div>
                         <h3>Neon Velocity</h3>
-
-                        <p>
-                            Car Design
-                        </p>
+                        <p>Car Design</p>
                     </div>
 
                     <span class="likes">
@@ -237,7 +234,6 @@
             </article>
 
 
-            <!-- CREATION 2 -->
             <article class="creation">
 
                 <div class="creation-image fashion-art">
@@ -252,10 +248,7 @@
 
                     <div>
                         <h3>Future Streetwear</h3>
-
-                        <p>
-                            Fashion
-                        </p>
+                        <p>Fashion</p>
                     </div>
 
                     <span class="likes">
@@ -267,7 +260,6 @@
             </article>
 
 
-            <!-- CREATION 3 -->
             <article class="creation">
 
                 <div class="creation-image galaxy-art">
@@ -282,10 +274,7 @@
 
                     <div>
                         <h3>Beyond The Stars</h3>
-
-                        <p>
-                            Artwork
-                        </p>
+                        <p>Artwork</p>
                     </div>
 
                     <span class="likes">
@@ -333,6 +322,7 @@
     <footer>
 
         <div class="footer-brand">
+
             <div class="footer-logo">
                 ∞ INFINITY
             </div>
@@ -340,8 +330,8 @@
             <p>
                 Infinite ideas. Infinite possibilities.
             </p>
-        </div>
 
+        </div>
 
         <div class="footer-right">
             © 2026 TNT(Taher and Talha productions)
@@ -350,5 +340,163 @@
     </footer>
 
 
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <script>
+
+        /* =========================================
+           SUPABASE
+        ========================================= */
+
+        const SUPABASE_URL =
+            "https://ppsuunamsabnepjlcfyz.supabase.co";
+
+        const SUPABASE_ANON_KEY =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwc3V1bmFtc2FibmVwamxjZnl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NTk1NzgsImV4cCI6MjEwNDUzNTU3OH0.iua178hKtB6K7UbLFr1m2-SEpF9X7l8SErlULqOxHB0";
+
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_ANON_KEY
+            );
+
+
+        /* =========================================
+           ACCOUNT AREA
+        ========================================= */
+
+        const accountArea =
+            document.getElementById("account-area");
+
+        const heroSignupButton =
+            document.getElementById("hero-signup-button");
+
+
+        async function updateAccountUI() {
+
+            const { data, error } =
+                await supabaseClient.auth.getSession();
+
+
+            if (error) {
+
+                console.error(
+                    "Session error:",
+                    error
+                );
+
+                return;
+            }
+
+
+            const session = data.session;
+
+
+            /* USER IS LOGGED IN */
+
+            if (session && session.user) {
+
+                const user =
+                    session.user;
+
+
+                let username =
+                    user.user_metadata?.username;
+
+
+                if (!username) {
+                    username = user.email
+                        ? user.email.split("@")[0]
+                        : "Account";
+                }
+
+
+                /* Navbar account button */
+
+                accountArea.innerHTML = `
+
+                    <a href="account.html"
+                       class="account-button">
+
+                        <span class="account-icon">
+                            ${username.charAt(0).toUpperCase()}
+                        </span>
+
+                        <span class="account-name">
+                            ${username}
+                        </span>
+
+                    </a>
+
+                `;
+
+
+                /* Change hero button */
+
+                if (heroSignupButton) {
+
+                    heroSignupButton.href =
+                        "account.html";
+
+                    heroSignupButton.textContent =
+                        "My Account";
+
+                }
+
+            }
+
+
+            /* USER IS NOT LOGGED IN */
+
+            else {
+
+                accountArea.innerHTML = `
+
+                    <a href="signup.html"
+                       class="nav-signup">
+
+                        Sign Up
+
+                    </a>
+
+                `;
+
+
+                if (heroSignupButton) {
+
+                    heroSignupButton.href =
+                        "signup.html";
+
+                    heroSignupButton.textContent =
+                        "Sign Up";
+
+                }
+
+            }
+
+        }
+
+
+        /* Check login status */
+
+        updateAccountUI();
+
+
+        /* Detect login/logout */
+
+        supabaseClient.auth.onAuthStateChange(
+            function () {
+
+                updateAccountUI();
+
+            }
+        );
+
+    </script>
+
 </body>
+
 </html>
