@@ -212,18 +212,7 @@ const { data, error } = await supabaseClient.auth.signUp({
             }
 
 
-            // Save the profile information
-            const { error: profileError } =
-                await supabaseClient
-                    .from("profiles")
-                    .insert({
-                        id: data.user.id,
-                        username: username,
-                        nickname: nickname,
-                        email: email,
-                        phone: phone || null,
-                        country: country || null
-                    });
+
 
 
             if (profileError) {
