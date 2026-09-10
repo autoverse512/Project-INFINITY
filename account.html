@@ -1,1 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Account — Infinity</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="index.html"
+           class="logo">
+            ∞ INFINITY
+        </a>
+
+        <a href="index.html"
+           class="nav-signup">
+            Home
+        </a>
+
+    </nav>
+
+
+    <!-- ACCOUNT -->
+
+    <main class="account-page">
+
+        <div class="account-container">
+
+
+            <!-- PROFILE HEADER -->
+
+            <div class="account-header">
+
+                <div class="large-account-icon"
+                     id="account-avatar">
+                    ?
+                </div>
+
+                <span class="section-label">
+                    MY ACCOUNT
+                </span>
+
+                <h1 id="account-nickname">
+                    Loading...
+                </h1>
+
+                <p id="account-username">
+                    @loading
+                </p>
+
+            </div>
+
+
+            <!-- ACCOUNT INFORMATION -->
+
+            <div class="account-details">
+
+
+                <div class="account-detail">
+
+                    <span class="detail-label">
+                        Email
+                    </span>
+
+                    <span class="detail-value"
+                          id="account-email">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <div class="account-detail">
+
+                    <span class="detail-label">
+                        Username
+                    </span>
+
+                    <span class="detail-value"
+                          id="account-username-detail">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <div class="account-detail">
+
+                    <span class="detail-label">
+                        Phone
+                    </span>
+
+                    <span class="detail-value"
+                          id="account-phone">
+                        Not provided
+                    </span>
+
+                </div>
+
+
+                <div class="account-detail">
+
+                    <span class="detail-label">
+                        Country
+                    </span>
+
+                    <span class="detail-value"
+                          id="account-country">
+                        Not provided
+                    </span>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="account-detail">
+
+                    <span class="detail-label">
+                        Password
+                    </span>
+
+                    <div class="password-display">
+
+                        <span id="password-text">
+                            ••••••••••••
+                        </span>
+
+                        <button
+                            type="button"
+                            id="password-eye"
+                            class="eye-button"
+                            title="Password information">
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD MESSAGE -->
+
+            <div id="password-message"
+                 class="password-message">
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="account-actions">
+
+                <button
+                    type="button"
+                    class="button account-secondary"
+                    id="change-password">
+
+                    Change Password
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="button account-logout"
+                    id="logout-button">
+
+                    Log Out
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+
+
+    <script>
+
+        /* =========================================
+           SUPABASE
+        ========================================= */
+
+        const SUPABASE_URL =
+            "YOUR_SUPABASE_URL";
+
+        const SUPABASE_ANON_KEY =
+            "YOUR_SUPABASE_ANON_KEY";
+
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_ANON_KEY
+            );
+
+
+        /* =========================================
+           LOAD ACCOUNT
+        ========================================= */
+
+        async function loadAccount() {
+
+            const { data, error } =
+                await supabaseClient.auth.getSession();
+
+
+            if (error) {
+
+                console.error(error);
+
+                window.location.href =
+                    "signup.html";
+
+                return;
+            }
+
+
+            const session =
+                data.session;
+
+
+            /* Not logged in */
+
+            if (!session || !session.user) {
+
+                window.location.href =
+                    "signup.html";
+
+                return;
+
+            }
+
+
+            const user =
+                session.user;
+
+
+            const metadata =
+                user.user_metadata || {};
+
+
+            const username =
+                metadata.username ||
+                user.email.split("@")[0];
+
+
+            const nickname =
+                metadata.nickname ||
+                username;
+
+
+            const phone =
+                metadata.phone ||
+                "Not provided";
+
+
+            const country =
+                metadata.country ||
+                "Not provided";
+
+
+            /* Display information */
+
+            document.getElementById(
+                "account-avatar"
+            ).textContent =
+                nickname.charAt(0).toUpperCase();
+
+
+            document.getElementById(
+                "account-nickname"
+            ).textContent =
+                nickname;
+
+
+            document.getElementById(
+                "account-username"
+            ).textContent =
+                "@" + username;
+
+
+            document.getElementById(
+                "account-email"
+            ).textContent =
+                user.email;
+
+
+            document.getElementById(
+                "account-username-detail"
+            ).textContent =
+                username;
+
+
+            document.getElementById(
+                "account-phone"
+            ).textContent =
+                phone;
+
+
+            document.getElementById(
+                "account-country"
+            ).textContent =
+                country;
+
+        }
+
+
+        /* =========================================
+           PASSWORD EYE
+        ========================================= */
+
+        document.getElementById(
+            "password-eye"
+        ).addEventListener(
+            "click",
+            function () {
+
+                document.getElementById(
+                    "password-message"
+                ).textContent =
+                    "For your security, Infinity cannot display your actual password. You can change it using the button below.";
+
+            }
+        );
+
+
+        /* =========================================
+           CHANGE PASSWORD
+        ========================================= */
+
+        document.getElementById(
+            "change-password"
+        ).addEventListener(
+            "click",
+            async function () {
+
+                const { data } =
+                    await supabaseClient.auth.getUser();
+
+
+                if (!data.user) {
+
+                    window.location.href =
+                        "signup.html";
+
+                    return;
+
+                }
+
+
+                const email =
+                    data.user.email;
+
+
+                const { error } =
+                    await supabaseClient.auth
+                        .resetPasswordForEmail(
+                            email,
+                            {
+                                redirectTo:
+                                    window.location.origin +
+                                    window.location.pathname
+                            }
+                        );
+
+
+                if (error) {
+
+                    document.getElementById(
+                        "password-message"
+                    ).textContent =
+                        error.message;
+
+                    return;
+
+                }
+
+
+                document.getElementById(
+                    "password-message"
+                ).textContent =
+                    "A password reset link has been sent to your email.";
+
+            }
+        );
+
+
+        /* =========================================
+           LOG OUT
+        ========================================= */
+
+        document.getElementById(
+            "logout-button"
+        ).addEventListener(
+            "click",
+            async function () {
+
+                const { error } =
+                    await supabaseClient.auth.signOut();
+
+
+                if (error) {
+
+                    console.error(error);
+
+                    return;
+
+                }
+
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+
+        /* Load */
+
+        loadAccount();
+
+    </script>
+
+</body>
+
+</html>
