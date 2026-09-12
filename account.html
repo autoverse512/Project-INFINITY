@@ -141,35 +141,41 @@ const supabaseClient =
 
 async function loadAccount() {
 
-    console.log("Loading Infinity account...");
-
-
     const {
-        data: sessionData
-    } = await supabaseClient.auth.getSession();
+        data: { user },
+        error
+    } = await supabaseClient.auth.getUser();
 
+    console.log("USER:", user);
+    console.log("AUTH ERROR:", error);
 
-    console.log("SESSION:", sessionData.session);
-
-
-    if (!sessionData.session) {
-
-        document.getElementById("account-message").textContent =
-            "You are not logged in.";
-
-        console.log("NO SESSION FOUND");
-
+    if (error || !user) {
+        window.location.href = "login.html";
         return;
     }
 
+    // -------------------------
+    // AUTH INFORMATION
+    // -------------------------
 
-    const user = sessionData.session.user;
+    const metadata = user.user_metadata || {};
+
+    const username =
+        metadata.username || "Not provided";
+
+    const nickname =
+        metadata.nickname || "Not provided";
+
+    const phone =
+        metadata.phone || "Not provided";
+
+    const country =
+        metadata.country || "Not provided";
 
 
-    console.log("LOGGED-IN USER:", user);
-
-
-    /* EMAIL */
+    // -------------------------
+    // DISPLAY EMAIL
+    // -------------------------
 
     document.getElementById("email").textContent =
         user.email || "Not available";
@@ -178,20 +184,9 @@ async function loadAccount() {
         user.email || "";
 
 
-    /* USER INFORMATION */
-
-    const username =
-        user.user_metadata?.username || "Not provided";
-
-    const nickname =
-        user.user_metadata?.nickname || "Not provided";
-
-    const phone =
-        user.user_metadata?.phone || "Not provided";
-
-    const country =
-        user.user_metadata?.country || "Not provided";
-
+    // -------------------------
+    // DISPLAY PROFILE DETAILS
+    // -------------------------
 
     document.getElementById("username").textContent =
         username;
@@ -206,17 +201,26 @@ async function loadAccount() {
         country;
 
 
-    /* ACCOUNT ICON */
+    // -------------------------
+    // ACCOUNT ICON
+    // -------------------------
 
-    const iconName =
+    const name =
         username !== "Not provided"
             ? username
-            : user.email || "U";
-
+            : nickname !== "Not provided"
+                ? nickname
+                : user.email || "U";
 
     document.getElementById("account-icon").textContent =
-        iconName.charAt(0).toUpperCase();
+        name.charAt(0).toUpperCase();
 
+
+    console.log("Username:", username);
+    console.log("Nickname:", nickname);
+    console.log("Phone:", phone);
+    console.log("Country:", country);
+}
 
     console.log("ACCOUNT LOADED SUCCESSFULLY");
 
