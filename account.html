@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,11 +10,6 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-
-        /* ==============================
-           ACCOUNT PAGE
-        ============================== */
-
         .account-page {
             min-height: calc(100vh - 80px);
             display: flex;
@@ -24,11 +18,9 @@
             padding: 60px 20px;
         }
 
-
         .account-container {
             width: 100%;
             max-width: 650px;
-
             padding: 45px;
 
             border: 1px solid rgba(255,255,255,0.08);
@@ -48,21 +40,14 @@
             backdrop-filter: blur(20px);
         }
 
-
-        /* ==============================
-           HEADER
-        ============================== */
-
         .account-header {
             text-align: center;
             margin-bottom: 35px;
         }
 
-
         .large-account-icon {
             width: 85px;
             height: 85px;
-
             margin: 0 auto 20px;
 
             display: flex;
@@ -73,7 +58,6 @@
 
             font-size: 34px;
             font-weight: 700;
-
             color: white;
 
             background:
@@ -87,14 +71,11 @@
                 0 0 35px rgba(100,120,255,0.35);
         }
 
-
         .account-header h1 {
             margin: 10px 0;
-
             font-size: 42px;
             line-height: 1.1;
         }
-
 
         .account-header h1 span {
             background:
@@ -106,20 +87,13 @@
 
             -webkit-background-clip: text;
             background-clip: text;
-
             color: transparent;
         }
-
 
         #account-email {
             color: rgba(255,255,255,0.55);
             margin-top: 10px;
         }
-
-
-        /* ==============================
-           DETAILS
-        ============================== */
 
         .account-details {
             display: flex;
@@ -127,61 +101,46 @@
             gap: 12px;
         }
 
-
         .detail-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
 
             padding: 18px 20px;
 
             border-radius: 14px;
 
             background: rgba(255,255,255,0.035);
-
             border: 1px solid rgba(255,255,255,0.06);
 
             transition: 0.2s ease;
         }
 
-
         .detail-item:hover {
             background: rgba(255,255,255,0.055);
-
-            border-color:
-                rgba(150,130,255,0.25);
-
+            border-color: rgba(150,130,255,0.25);
             transform: translateY(-1px);
         }
-
 
         .detail-item > span {
             color: rgba(255,255,255,0.5);
             font-size: 14px;
         }
 
-
         .detail-item strong {
             color: white;
             font-size: 15px;
-
             max-width: 60%;
             text-align: right;
-
             word-break: break-word;
         }
-
-
-        /* ==============================
-           PASSWORD
-        ============================== */
 
         .password-display {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
 
         .eye-button {
             border: none;
@@ -194,43 +153,28 @@
             cursor: pointer;
 
             color: white;
-
             background: rgba(255,255,255,0.07);
 
             transition: 0.2s ease;
         }
 
-
         .eye-button:hover {
             background: rgba(130,100,255,0.25);
         }
 
-
-        /* ==============================
-           LOGOUT
-        ============================== */
-
         .logout-button {
             width: 100%;
-
             margin-top: 28px;
-
             border: none;
-
             cursor: pointer;
         }
-
 
         #account-message {
             text-align: center;
             margin-top: 18px;
             color: rgba(255,255,255,0.6);
+            font-size: 13px;
         }
-
-
-        /* ==============================
-           MOBILE
-        ============================== */
 
         @media (max-width: 600px) {
 
@@ -238,17 +182,14 @@
                 padding: 35px 15px;
             }
 
-
             .account-container {
                 padding: 30px 20px;
                 border-radius: 20px;
             }
 
-
             .account-header h1 {
                 font-size: 34px;
             }
-
 
             .large-account-icon {
                 width: 75px;
@@ -256,29 +197,20 @@
                 font-size: 28px;
             }
 
-
             .detail-item {
                 padding: 16px;
             }
 
-
             .detail-item strong {
                 max-width: 55%;
             }
-
         }
-
     </style>
 
 </head>
 
 
 <body>
-
-
-    <!-- ==============================
-         NAVBAR
-    ============================== -->
 
     <nav class="navbar">
 
@@ -293,37 +225,25 @@
     </nav>
 
 
-
-    <!-- ==============================
-         ACCOUNT PAGE
-    ============================== -->
-
     <main class="account-page">
 
         <div class="account-container">
-
-
-            <!-- HEADER -->
 
             <div class="account-header">
 
                 <div
                     class="large-account-icon"
-                    id="account-icon"
-                >
+                    id="account-icon">
                     U
                 </div>
-
 
                 <span class="section-label">
                     YOUR INFINITY ACCOUNT
                 </span>
 
-
                 <h1>
                     My <span>Account.</span>
                 </h1>
-
 
                 <p id="account-email">
                     Loading account...
@@ -332,100 +252,36 @@
             </div>
 
 
-
-            <!-- DETAILS -->
-
             <div class="account-details">
 
-
-                <!-- USERNAME -->
-
                 <div class="detail-item">
-
-                    <span>
-                        Username
-                    </span>
-
-                    <strong id="username">
-                        Loading...
-                    </strong>
-
+                    <span>Username</span>
+                    <strong id="username">Loading...</strong>
                 </div>
 
-
-
-                <!-- NICKNAME -->
-
                 <div class="detail-item">
-
-                    <span>
-                        Nickname
-                    </span>
-
-                    <strong id="nickname">
-                        Loading...
-                    </strong>
-
+                    <span>Nickname</span>
+                    <strong id="nickname">Loading...</strong>
                 </div>
 
-
-
-                <!-- EMAIL -->
-
                 <div class="detail-item">
-
-                    <span>
-                        Email
-                    </span>
-
-                    <strong id="email">
-                        Loading...
-                    </strong>
-
+                    <span>Email</span>
+                    <strong id="email">Loading...</strong>
                 </div>
 
-
-
-                <!-- PHONE -->
-
                 <div class="detail-item">
-
-                    <span>
-                        Phone
-                    </span>
-
-                    <strong id="phone">
-                        Not provided
-                    </strong>
-
+                    <span>Phone</span>
+                    <strong id="phone">Not provided</strong>
                 </div>
 
-
-
-                <!-- COUNTRY -->
-
                 <div class="detail-item">
-
-                    <span>
-                        Country
-                    </span>
-
-                    <strong id="country">
-                        Not provided
-                    </strong>
-
+                    <span>Country</span>
+                    <strong id="country">Not provided</strong>
                 </div>
 
-
-
-                <!-- PASSWORD -->
-
                 <div class="detail-item">
 
-                    <span>
-                        Password
-                    </span>
-
+                    <span>Password</span>
 
                     <div class="password-display">
 
@@ -433,13 +289,10 @@
                             ********
                         </strong>
 
-
                         <button
                             type="button"
                             id="show-password"
-                            class="eye-button"
-                            title="Password security"
-                        >
+                            class="eye-button">
                             👁
                         </button>
 
@@ -447,43 +300,27 @@
 
                 </div>
 
-
             </div>
 
 
-
-            <!-- LOGOUT -->
-
             <button
                 id="logout-button"
-                class="button logout-button"
-            >
+                class="button logout-button">
                 Log Out
             </button>
 
 
             <p id="account-message"></p>
 
-
         </div>
 
     </main>
 
 
-
-    <!-- ==============================
-         SUPABASE
-    ============================== -->
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
     <script>
-
-
-        /* ==============================
-           SUPABASE CONFIG
-        ============================== */
 
         const SUPABASE_URL =
             "https://ppsuunamsabnepjlcfyz.supabase.co";
@@ -501,85 +338,99 @@
                     auth: {
                         persistSession: true,
                         autoRefreshToken: true,
-                        detectSessionInUrl: false
+                        detectSessionInUrl: true
                     }
                 }
             );
 
 
-
-        /* ==============================
-           LOAD ACCOUNT
-        ============================== */
-
         async function loadAccount() {
 
             const message =
-                document.getElementById(
-                    "account-message"
-                );
+                document.getElementById("account-message");
 
 
             try {
 
-                /*
-                    Get currently logged-in user
-                */
+                message.textContent =
+                    "Loading account...";
 
-                const {
-                    data,
-                    error
-                } =
-                    await supabaseClient.auth.getUser();
+
+                /*
+                 * GET THE EXISTING SESSION
+                 *
+                 * This uses the login session already
+                 * stored in the browser.
+                 */
+
+                const result =
+                    await supabaseClient.auth.getSession();
 
 
                 console.log(
-                    "Infinity account user:",
-                    data?.user
+                    "Infinity session:",
+                    result.data?.session
                 );
 
 
                 console.log(
-                    "Infinity auth error:",
-                    error
+                    "Infinity session error:",
+                    result.error
                 );
 
 
+                if (result.error) {
+
+                    message.textContent =
+                        "Could not load your session.";
+
+                    console.error(
+                        result.error
+                    );
+
+                    return;
+                }
+
+
+                const session =
+                    result.data?.session;
+
+
                 /*
-                    If there is no logged-in user,
-                    go to login.
-                */
+                 * No session = not logged in.
+                 */
 
-                if (error || !data || !data.user) {
+                if (!session || !session.user) {
 
-                    window.location.href =
-                        "login.html";
+                    message.textContent =
+                        "You are not logged in.";
+
+                    setTimeout(() => {
+                        window.location.href =
+                            "login.html";
+                    }, 1200);
 
                     return;
                 }
 
 
                 const user =
-                    data.user;
-
-
-                /*
-                    Get metadata saved during signup.
-                */
-
-                const metadata =
-                    user.user_metadata || {};
+                    session.user;
 
 
                 console.log(
-                    "Infinity user metadata:",
-                    metadata
+                    "Infinity logged-in user:",
+                    user
                 );
 
 
                 /*
-                    Read user information.
-                */
+                 * USER METADATA
+                 */
+
+                const metadata =
+                    user.user_metadata || {};
+
 
                 const username =
                     metadata.username ||
@@ -601,10 +452,9 @@
                     "Not provided";
 
 
-
-                /* ==============================
-                   EMAIL
-                ============================== */
+                /*
+                 * EMAIL
+                 */
 
                 document.getElementById(
                     "email"
@@ -620,10 +470,9 @@
                     "";
 
 
-
-                /* ==============================
-                   USERNAME
-                ============================== */
+                /*
+                 * USERNAME
+                 */
 
                 document.getElementById(
                     "username"
@@ -631,10 +480,9 @@
                     username;
 
 
-
-                /* ==============================
-                   NICKNAME
-                ============================== */
+                /*
+                 * NICKNAME
+                 */
 
                 document.getElementById(
                     "nickname"
@@ -642,10 +490,9 @@
                     nickname;
 
 
-
-                /* ==============================
-                   PHONE
-                ============================== */
+                /*
+                 * PHONE
+                 */
 
                 document.getElementById(
                     "phone"
@@ -653,10 +500,9 @@
                     phone;
 
 
-
-                /* ==============================
-                   COUNTRY
-                ============================== */
+                /*
+                 * COUNTRY
+                 */
 
                 document.getElementById(
                     "country"
@@ -664,12 +510,11 @@
                     country;
 
 
+                /*
+                 * ACCOUNT INITIAL
+                 */
 
-                /* ==============================
-                   ACCOUNT ICON
-                ============================== */
-
-                let displayName =
+                const displayName =
                     username !== "Not provided"
                         ? username
                         : nickname !== "Not provided"
@@ -685,13 +530,20 @@
                         .toUpperCase();
 
 
+                message.textContent = "";
+
+
+                console.log(
+                    "Infinity account loaded successfully."
+                );
+
             }
 
-            catch (err) {
+            catch (error) {
 
                 console.error(
-                    "Account page error:",
-                    err
+                    "Infinity account error:",
+                    error
                 );
 
 
@@ -703,10 +555,9 @@
         }
 
 
-
-        /* ==============================
-           LOG OUT
-        ============================== */
+        /*
+         * LOG OUT
+         */
 
         document
             .getElementById("logout-button")
@@ -735,16 +586,8 @@
                     if (error) {
 
                         console.error(
-                            "Logout error:",
                             error
                         );
-
-
-                        document.getElementById(
-                            "account-message"
-                        ).textContent =
-                            "Could not log out: " +
-                            error.message;
 
 
                         button.disabled = false;
@@ -752,13 +595,14 @@
                         button.textContent =
                             "Log Out";
 
+                        document.getElementById(
+                            "account-message"
+                        ).textContent =
+                            error.message;
+
                         return;
                     }
 
-
-                    /*
-                        Successfully logged out.
-                    */
 
                     window.location.href =
                         "index.html";
@@ -767,10 +611,9 @@
             );
 
 
-
-        /* ==============================
-           PASSWORD BUTTON
-        ============================== */
+        /*
+         * PASSWORD BUTTON
+         */
 
         document
             .getElementById("show-password")
@@ -779,22 +622,20 @@
                 function() {
 
                     alert(
-                        "For your security, Infinity cannot display your actual password. Your password is securely protected by Supabase."
+                        "For your security, Infinity cannot display your actual password."
                     );
 
                 }
             );
 
 
-
-        /* ==============================
-           START
-        ============================== */
+        /*
+         * START
+         */
 
         loadAccount();
 
     </script>
-
 
 </body>
 
