@@ -410,19 +410,26 @@
 
         async function loadAccount() {
 
-            const {
-                data,
-                error
-            } = await supabaseClient.auth.getUser();
+const {
+    data,
+    error
+} = await supabaseClient.auth.getUser();
 
+console.log("Account page user:", data.user);
+console.log("Account page error:", error);
 
-            if (error || !data.user) {
+if (error) {
+    console.error("Supabase authentication error:", error);
+    document.getElementById("account-message").textContent =
+        "Authentication error: " + error.message;
+    return;
+}
 
-                window.location.href = "login.html";
-
-                return;
-            }
-
+if (!data.user) {
+    document.getElementById("account-message").textContent =
+        "You are not logged in. Please log in first.";
+    return;
+}
 
             const user = data.user;
 
