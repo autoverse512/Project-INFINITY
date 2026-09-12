@@ -2,150 +2,101 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Account — Infinity</title>
 
-    <link rel="stylesheet"
-          href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-    <!-- NAVBAR -->
-
     <nav class="navbar">
 
-        <a href="index.html"
-           class="logo">
+        <a href="index.html" class="logo">
             ∞ INFINITY
         </a>
 
-        <a href="index.html"
-           class="nav-signup">
+        <a href="index.html" class="nav-signup">
             Home
         </a>
 
     </nav>
 
 
-    <!-- ACCOUNT -->
-
     <main class="account-page">
 
         <div class="account-container">
 
-
-            <!-- PROFILE HEADER -->
-
             <div class="account-header">
 
-                <div class="large-account-icon"
-                     id="account-avatar">
-                    ?
+                <div class="large-account-icon" id="account-icon">
+                    ∞
                 </div>
 
                 <span class="section-label">
-                    MY ACCOUNT
+                    YOUR INFINITY ACCOUNT
                 </span>
 
-                <h1 id="account-nickname">
-                    Loading...
+                <h1>
+                    My <span>Account.</span>
                 </h1>
 
-                <p id="account-username">
-                    @loading
+                <p id="account-email">
+                    Loading...
                 </p>
 
             </div>
 
 
-            <!-- ACCOUNT INFORMATION -->
-
             <div class="account-details">
 
-
-                <div class="account-detail">
-
-                    <span class="detail-label">
-                        Email
-                    </span>
-
-                    <span class="detail-value"
-                          id="account-email">
-                        Loading...
-                    </span>
-
+                <div class="detail-item">
+                    <span>Username</span>
+                    <strong id="username">Loading...</strong>
                 </div>
 
 
-                <div class="account-detail">
-
-                    <span class="detail-label">
-                        Username
-                    </span>
-
-                    <span class="detail-value"
-                          id="account-username-detail">
-                        Loading...
-                    </span>
-
+                <div class="detail-item">
+                    <span>Nickname</span>
+                    <strong id="nickname">Loading...</strong>
                 </div>
 
 
-                <div class="account-detail">
-
-                    <span class="detail-label">
-                        Phone
-                    </span>
-
-                    <span class="detail-value"
-                          id="account-phone">
-                        Not provided
-                    </span>
-
+                <div class="detail-item">
+                    <span>Email</span>
+                    <strong id="email">Loading...</strong>
                 </div>
 
 
-                <div class="account-detail">
-
-                    <span class="detail-label">
-                        Country
-                    </span>
-
-                    <span class="detail-value"
-                          id="account-country">
-                        Not provided
-                    </span>
-
+                <div class="detail-item">
+                    <span>Phone</span>
+                    <strong id="phone">Not provided</strong>
                 </div>
 
 
-                <!-- PASSWORD -->
+                <div class="detail-item">
+                    <span>Country</span>
+                    <strong id="country">Not provided</strong>
+                </div>
 
-                <div class="account-detail">
 
-                    <span class="detail-label">
-                        Password
-                    </span>
+                <div class="detail-item password-detail">
+
+                    <span>Password</span>
 
                     <div class="password-display">
 
-                        <span id="password-text">
-                            ••••••••••••
-                        </span>
+                        <strong id="password">
+                            ********
+                        </strong>
 
                         <button
                             type="button"
-                            id="password-eye"
+                            id="show-password"
                             class="eye-button"
-                            title="Password information">
+                        >
                             👁
                         </button>
 
@@ -156,293 +107,210 @@
             </div>
 
 
-            <!-- PASSWORD MESSAGE -->
+            <button
+                id="logout-button"
+                class="button logout-button"
+            >
+                Log Out
+            </button>
 
-            <div id="password-message"
-                 class="password-message">
-
-            </div>
-
-
-            <!-- ACTIONS -->
-
-            <div class="account-actions">
-
-                <button
-                    type="button"
-                    class="button account-secondary"
-                    id="change-password">
-
-                    Change Password
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="button account-logout"
-                    id="logout-button">
-
-                    Log Out
-
-                </button>
-
-            </div>
-
+            <p id="account-message"></p>
 
         </div>
 
     </main>
 
 
-    <!-- SUPABASE -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
 
-        /* =========================================
-           SUPABASE
-        ========================================= */
-
         const SUPABASE_URL =
-            "YOUR_SUPABASE_URL";
+            "https://ppsuunamsabnepjlcfyz.supabase.co";
 
         const SUPABASE_ANON_KEY =
-            "YOUR_SUPABASE_ANON_KEY";
+            "YOUR_PUBLISHABLE_KEY";
 
 
         const supabaseClient =
             supabase.createClient(
                 SUPABASE_URL,
-                SUPABASE_ANON_KEY
+                SUPABASE_ANON_KEY,
+                {
+                    auth: {
+                        persistSession: true,
+                        autoRefreshToken: true,
+                        detectSessionInUrl: true
+                    }
+                }
             );
 
 
-        /* =========================================
-           LOAD ACCOUNT
-        ========================================= */
-
         async function loadAccount() {
 
-            const { data, error } =
-                await supabaseClient.auth.getSession();
+            const {
+                data,
+                error
+            } = await supabaseClient.auth.getUser();
 
 
-            if (error) {
+            if (error || !data.user) {
 
-                console.error(error);
-
-                window.location.href =
-                    "signup.html";
+                window.location.href = "login.html";
 
                 return;
             }
 
 
-            const session =
-                data.session;
+            const user = data.user;
 
 
-            /* Not logged in */
+            /*
+                Get profile information.
 
-            if (!session || !session.user) {
+                IMPORTANT:
+                Change "profiles" below if your
+                Supabase table has a different name.
+            */
 
-                window.location.href =
-                    "signup.html";
+            const {
+                data: profile,
+                error: profileError
+            } = await supabaseClient
+                .from("profiles")
+                .select("*")
+                .eq("id", user.id)
+                .single();
 
-                return;
+
+            console.log("USER:", user);
+            console.log("PROFILE:", profile);
+            console.log("PROFILE ERROR:", profileError);
+
+
+            /*
+                Email comes from Supabase Auth
+            */
+
+            document.getElementById("email").textContent =
+                user.email || "Not available";
+
+            document.getElementById("account-email").textContent =
+                user.email || "";
+
+
+            /*
+                Profile information
+            */
+
+            if (profile) {
+
+                document.getElementById("username").textContent =
+                    profile.username || "Not provided";
+
+                document.getElementById("nickname").textContent =
+                    profile.nickname || "Not provided";
+
+                document.getElementById("phone").textContent =
+                    profile.phone || "Not provided";
+
+                document.getElementById("country").textContent =
+                    profile.country || "Not provided";
+
+
+                const name =
+                    profile.username ||
+                    profile.nickname ||
+                    user.email ||
+                    "U";
+
+
+                document.getElementById("account-icon").textContent =
+                    name.charAt(0).toUpperCase();
+
+            } else {
+
+                document.getElementById("username").textContent =
+                    user.user_metadata?.username || "Not provided";
+
+                document.getElementById("nickname").textContent =
+                    user.user_metadata?.nickname || "Not provided";
+
+                document.getElementById("phone").textContent =
+                    user.user_metadata?.phone || "Not provided";
+
+                document.getElementById("country").textContent =
+                    user.user_metadata?.country || "Not provided";
+
+
+                const name =
+                    user.user_metadata?.username ||
+                    user.email ||
+                    "U";
+
+
+                document.getElementById("account-icon").textContent =
+                    name.charAt(0).toUpperCase();
 
             }
-
-
-            const user =
-                session.user;
-
-
-            const metadata =
-                user.user_metadata || {};
-
-
-            const username =
-                metadata.username ||
-                user.email.split("@")[0];
-
-
-            const nickname =
-                metadata.nickname ||
-                username;
-
-
-            const phone =
-                metadata.phone ||
-                "Not provided";
-
-
-            const country =
-                metadata.country ||
-                "Not provided";
-
-
-            /* Display information */
-
-            document.getElementById(
-                "account-avatar"
-            ).textContent =
-                nickname.charAt(0).toUpperCase();
-
-
-            document.getElementById(
-                "account-nickname"
-            ).textContent =
-                nickname;
-
-
-            document.getElementById(
-                "account-username"
-            ).textContent =
-                "@" + username;
-
-
-            document.getElementById(
-                "account-email"
-            ).textContent =
-                user.email;
-
-
-            document.getElementById(
-                "account-username-detail"
-            ).textContent =
-                username;
-
-
-            document.getElementById(
-                "account-phone"
-            ).textContent =
-                phone;
-
-
-            document.getElementById(
-                "account-country"
-            ).textContent =
-                country;
 
         }
 
 
-        /* =========================================
-           PASSWORD EYE
-        ========================================= */
+        /*
+            LOG OUT
+        */
 
-        document.getElementById(
-            "password-eye"
-        ).addEventListener(
-            "click",
-            function () {
+        document
+            .getElementById("logout-button")
+            .addEventListener("click", async function() {
 
-                document.getElementById(
-                    "password-message"
-                ).textContent =
-                    "For your security, Infinity cannot display your actual password. You can change it using the button below.";
-
-            }
-        );
-
-
-        /* =========================================
-           CHANGE PASSWORD
-        ========================================= */
-
-        document.getElementById(
-            "change-password"
-        ).addEventListener(
-            "click",
-            async function () {
-
-                const { data } =
-                    await supabaseClient.auth.getUser();
-
-
-                if (!data.user) {
-
-                    window.location.href =
-                        "signup.html";
-
-                    return;
-
-                }
-
-
-                const email =
-                    data.user.email;
-
-
-                const { error } =
-                    await supabaseClient.auth
-                        .resetPasswordForEmail(
-                            email,
-                            {
-                                redirectTo:
-                                    window.location.origin +
-                                    window.location.pathname
-                            }
-                        );
+                const {
+                    error
+                } = await supabaseClient.auth.signOut();
 
 
                 if (error) {
 
                     document.getElementById(
-                        "password-message"
+                        "account-message"
                     ).textContent =
                         error.message;
 
                     return;
-
-                }
-
-
-                document.getElementById(
-                    "password-message"
-                ).textContent =
-                    "A password reset link has been sent to your email.";
-
-            }
-        );
-
-
-        /* =========================================
-           LOG OUT
-        ========================================= */
-
-        document.getElementById(
-            "logout-button"
-        ).addEventListener(
-            "click",
-            async function () {
-
-                const { error } =
-                    await supabaseClient.auth.signOut();
-
-
-                if (error) {
-
-                    console.error(error);
-
-                    return;
-
                 }
 
 
                 window.location.href =
                     "index.html";
 
-            }
-        );
+            });
 
 
-        /* Load */
+        /*
+            PASSWORD BUTTON
+
+            IMPORTANT:
+            Supabase does NOT give your website
+            the user's real password.
+
+            Therefore we cannot reveal it here.
+        */
+
+        document
+            .getElementById("show-password")
+            .addEventListener("click", function() {
+
+                alert(
+                    "For your security, Infinity cannot display your password. If you forgot it, use the password reset option."
+                );
+
+            });
+
+
+        /*
+            LOAD ACCOUNT
+        */
 
         loadAccount();
 
