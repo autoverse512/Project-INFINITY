@@ -317,325 +317,159 @@
     </main>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   ```html
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
 
-    <script>
+const SUPABASE_URL = "https://ppsuunamsabnepjlcfyz.supabase.co";
 
-        const SUPABASE_URL =
-            "https://ppsuunamsabnepjlcfyz.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwc3V1bmFtc2FibmVwamxjZnl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NTk1NzgsImV4cCI6MjEwNDUzNTU3OH0.iua178hKtB6K7UbLFr1m2-SEpF9X7l8SErlULqOxHB0";
 
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
 
-        const SUPABASE_ANON_KEY =
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwc3V1bmFtc2FibmVwamxjZnl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NTk1NzgsImV4cCI6MjEwNDUzNTU3OH0.iua178hKtB6K7UbLFr1m2-SEpF9X7l8SErlULqOxHB0";
 
+async function loadAccount() {
 
-        const supabaseClient =
-            supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_ANON_KEY,
-                {
-                    auth: {
-                        persistSession: true,
-                        autoRefreshToken: true,
-                        detectSessionInUrl: true
-                    }
-                }
-            );
+    const message = document.getElementById("account-message");
 
+    message.textContent = "Loading account...";
 
-        async function loadAccount() {
+    try {
 
-            const message =
-                document.getElementById("account-message");
+        const result = await supabaseClient.auth.getSession();
 
+        console.log("Supabase result:", result);
 
-            try {
+        if (result.error) {
 
-                message.textContent =
-                    "Loading account...";
+            console.error(result.error);
 
+            message.textContent =
+                "Session error: " + result.error.message;
 
-                /*
-                 * GET THE EXISTING SESSION
-                 *
-                 * This uses the login session already
-                 * stored in the browser.
-                 */
+            return;
+        }
 
-                const result =
-                    await supabaseClient.auth.getSession();
+        const session = result.data.session;
 
+        if (!session) {
 
-                console.log(
-                    "Infinity session:",
-                    result.data?.session
-                );
+            message.textContent = "You are not logged in.";
 
+            setTimeout(function () {
+                window.location.href = "login.html";
+            }, 1200);
 
-                console.log(
-                    "Infinity session error:",
-                    result.error
-                );
+            return;
+        }
 
+        const user = session.user;
 
-                if (result.error) {
+        const metadata = user.user_metadata || {};
 
-                    message.textContent =
-                        "Could not load your session.";
+        const username =
+            metadata.username || "Not provided";
 
-                    console.error(
-                        result.error
-                    );
+        const nickname =
+            metadata.nickname || "Not provided";
 
-                    return;
-                }
+        const phone =
+            metadata.phone || "Not provided";
 
+        const country =
+            metadata.country || "Not provided";
 
-                const session =
-                    result.data?.session;
 
+        document.getElementById("email").textContent =
+            user.email || "Not available";
 
-                /*
-                 * No session = not logged in.
-                 */
+        document.getElementById("account-email").textContent =
+            user.email || "";
 
-                if (!session || !session.user) {
+        document.getElementById("username").textContent =
+            username;
 
-                    message.textContent =
-                        "You are not logged in.";
+        document.getElementById("nickname").textContent =
+            nickname;
 
-                    setTimeout(() => {
-                        window.location.href =
-                            "login.html";
-                    }, 1200);
+        document.getElementById("phone").textContent =
+            phone;
 
-                    return;
-                }
+        document.getElementById("country").textContent =
+            country;
 
 
-                const user =
-                    session.user;
+        let displayName = username;
 
+        if (username === "Not provided") {
+            displayName = nickname;
+        }
 
-                console.log(
-                    "Infinity logged-in user:",
-                    user
-                );
-
-
-                /*
-                 * USER METADATA
-                 */
-
-                const metadata =
-                    user.user_metadata || {};
-
-
-                const username =
-                    metadata.username ||
-                    "Not provided";
-
-
-                const nickname =
-                    metadata.nickname ||
-                    "Not provided";
-
-
-                const phone =
-                    metadata.phone ||
-                    "Not provided";
-
-
-                const country =
-                    metadata.country ||
-                    "Not provided";
-
-
-                /*
-                 * EMAIL
-                 */
-
-                document.getElementById(
-                    "email"
-                ).textContent =
-                    user.email ||
-                    "Not available";
-
-
-                document.getElementById(
-                    "account-email"
-                ).textContent =
-                    user.email ||
-                    "";
-
-
-                /*
-                 * USERNAME
-                 */
-
-                document.getElementById(
-                    "username"
-                ).textContent =
-                    username;
-
-
-                /*
-                 * NICKNAME
-                 */
-
-                document.getElementById(
-                    "nickname"
-                ).textContent =
-                    nickname;
-
-
-                /*
-                 * PHONE
-                 */
-
-                document.getElementById(
-                    "phone"
-                ).textContent =
-                    phone;
-
-
-                /*
-                 * COUNTRY
-                 */
-
-                document.getElementById(
-                    "country"
-                ).textContent =
-                    country;
-
-
-                /*
-                 * ACCOUNT INITIAL
-                 */
-
-                const displayName =
-                    username !== "Not provided"
-                        ? username
-                        : nickname !== "Not provided"
-                            ? nickname
-                            : user.email || "U";
-
-
-                document.getElementById(
-                    "account-icon"
-                ).textContent =
-                    displayName
-                        .charAt(0)
-                        .toUpperCase();
-
-
-                message.textContent = "";
-
-
-                console.log(
-                    "Infinity account loaded successfully."
-                );
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Infinity account error:",
-                    error
-                );
-
-
-                message.textContent =
-                    "Something went wrong while loading your account.";
-
-            }
-
+        if (displayName === "Not provided") {
+            displayName = user.email || "U";
         }
 
 
-        /*
-         * LOG OUT
-         */
-
-        document
-            .getElementById("logout-button")
-            .addEventListener(
-                "click",
-                async function() {
-
-                    const button =
-                        document.getElementById(
-                            "logout-button"
-                        );
+        document.getElementById("account-icon").textContent =
+            displayName.charAt(0).toUpperCase();
 
 
-                    button.disabled = true;
+        message.textContent = "";
 
-                    button.textContent =
-                        "Logging out...";
+        console.log("Infinity account loaded.");
 
+    }
 
-                    const {
-                        error
-                    } =
-                        await supabaseClient.auth.signOut();
+    catch (error) {
 
+        console.error("Account error:", error);
 
-                    if (error) {
-
-                        console.error(
-                            error
-                        );
+        message.textContent =
+            "Error: " + error.message;
+    }
+}
 
 
-                        button.disabled = false;
+document
+    .getElementById("logout-button")
+    .addEventListener("click", async function () {
 
-                        button.textContent =
-                            "Log Out";
+        const result =
+            await supabaseClient.auth.signOut();
 
-                        document.getElementById(
-                            "account-message"
-                        ).textContent =
-                            error.message;
+        if (result.error) {
 
-                        return;
-                    }
+            console.error(result.error);
 
+            document.getElementById("account-message").textContent =
+                result.error.message;
 
-                    window.location.href =
-                        "index.html";
+            return;
+        }
 
-                }
-            );
+        window.location.href = "index.html";
 
-
-        /*
-         * PASSWORD BUTTON
-         */
-
-        document
-            .getElementById("show-password")
-            .addEventListener(
-                "click",
-                function() {
-
-                    alert(
-                        "For your security, Infinity cannot display your actual password."
-                    );
-
-                }
-            );
+    });
 
 
-        /*
-         * START
-         */
+document
+    .getElementById("show-password")
+    .addEventListener("click", function () {
 
-        loadAccount();
+        alert(
+            "For your security, Infinity cannot display your actual password."
+        );
 
-    </script>
+    });
+
+
+loadAccount();
+
+</script>
 
 </body>
 
