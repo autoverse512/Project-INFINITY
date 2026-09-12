@@ -371,17 +371,37 @@ async function loadAccount() {
 
         const metadata = user.user_metadata || {};
 
-        const username =
-            metadata.username || "Not provided";
+const { data: profile, error: profileError } =
+    await supabaseClient
+        .from("profiles")
+        .select("username, nickname, phone, country")
+        .eq("id", user.id)
+        .single();
 
-        const nickname =
-            metadata.nickname || "Not provided";
 
-        const phone =
-            metadata.phone || "Not provided";
+if (profileError) {
 
-        const country =
-            metadata.country || "Not provided";
+    console.error("Profile error:", profileError);
+
+    message.textContent =
+        "Could not load your profile: " +
+        profileError.message;
+
+    return;
+}
+
+
+const username =
+    profile?.username || "Not provided";
+
+const nickname =
+    profile?.nickname || "Not provided";
+
+const phone =
+    profile?.phone || "Not provided";
+
+const country =
+    profile?.country || "Not provided";
 
 
         document.getElementById("email").textContent =
