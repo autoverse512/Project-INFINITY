@@ -12,308 +12,248 @@
 
 <body>
 
-    <nav class="navbar">
+<nav class="navbar">
 
-        <a href="index.html" class="logo">
-            ∞ INFINITY
-        </a>
+    <a href="index.html" class="logo">
+        ∞ INFINITY
+    </a>
 
-        <a href="index.html" class="nav-signup">
-            Home
-        </a>
+    <a href="index.html" class="nav-signup">
+        Home
+    </a>
 
-    </nav>
+</nav>
 
 
-    <main class="account-page">
+<main class="account-page">
 
-        <div class="account-container">
+    <div class="account-container">
 
-            <div class="account-header">
+        <div class="account-header">
 
-                <div class="large-account-icon" id="account-icon">
-                    ∞
-                </div>
-
-                <span class="section-label">
-                    YOUR INFINITY ACCOUNT
-                </span>
-
-                <h1>
-                    My <span>Account.</span>
-                </h1>
-
-                <p id="account-email">
-                    Loading...
-                </p>
-
+            <div class="large-account-icon" id="account-icon">
+                ∞
             </div>
 
+            <span class="section-label">
+                YOUR INFINITY ACCOUNT
+            </span>
 
-            <div class="account-details">
+            <h1>
+                My <span>Account.</span>
+            </h1>
 
-                <div class="detail-item">
-                    <span>Username</span>
-                    <strong id="username">Loading...</strong>
-                </div>
-
-                <div class="detail-item">
-                    <span>Nickname</span>
-                    <strong id="nickname">Loading...</strong>
-                </div>
-
-                <div class="detail-item">
-                    <span>Email</span>
-                    <strong id="email">Loading...</strong>
-                </div>
-
-                <div class="detail-item">
-                    <span>Phone</span>
-                    <strong id="phone">Not provided</strong>
-                </div>
-
-                <div class="detail-item">
-                    <span>Country</span>
-                    <strong id="country">Not provided</strong>
-                </div>
-
-                <div class="detail-item password-detail">
-
-                    <span>Password</span>
-
-                    <div class="password-display">
-
-                        <strong id="password">
-                            ********
-                        </strong>
-
-                        <button
-                            type="button"
-                            id="show-password"
-                            class="eye-button">
-                            👁
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <button
-                id="logout-button"
-                class="button logout-button">
-                Log Out
-            </button>
-
-
-            <p id="account-message"></p>
+            <p id="account-email">
+                Loading...
+            </p>
 
         </div>
 
-    </main>
+
+        <div class="account-details">
+
+            <div class="detail-item">
+                <span>Username</span>
+                <strong id="username">Loading...</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Nickname</span>
+                <strong id="nickname">Loading...</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Email</span>
+                <strong id="email">Loading...</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Phone</span>
+                <strong id="phone">Not provided</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>Country</span>
+                <strong id="country">Not provided</strong>
+            </div>
+
+            <div class="detail-item password-detail">
+
+                <span>Password</span>
+
+                <div class="password-display">
+
+                    <strong>
+                        ********
+                    </strong>
+
+                    <button
+                        type="button"
+                        id="show-password"
+                        class="eye-button">
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
 
 
-    <!-- SUPABASE -->
+        <button
+            id="logout-button"
+            class="button logout-button">
+            Log Out
+        </button>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <p id="account-message"></p>
 
-    <script>
+    </div>
 
-        const SUPABASE_URL =
-            "https://ppsuunamsabnepjlcfyz.supabase.co";
-
-
-        /*
-         * IMPORTANT:
-         * Put your REAL Supabase Publishable/Anon key here.
-         *
-         * Do NOT put your service_role or secret key here.
-         */
-
-        const SUPABASE_ANON_KEY =
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwc3V1bmFtc2FibmVwamxjZnl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NTk1NzgsImV4cCI6MjEwNDUzNTU3OH0.iua178hKtB6K7UbLFr1m2-SEpF9X7l8SErlULqOxHB0";
+</main>
 
 
-        const supabaseClient =
-            supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_ANON_KEY,
-                {
-                    auth: {
-                        persistSession: true,
-                        autoRefreshToken: true,
-                        detectSessionInUrl: true
-                    }
-                }
-            );
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+    "https://ppsuunamsabnepjlcfyz.supabase.co";
+
+const SUPABASE_ANON_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwc3V1bmFtc2FibmVwamxjZnl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NTk1NzgsImV4cCI6MjEwNDUzNTU3OH0.iua178hKtB6K7UbLFr1m2-SEpF9X7l8SErlULqOxHB0";
 
 
-        /*
-         * LOAD ACCOUNT
-         */
-
-        async function loadAccount() {
-
-            console.log("Infinity account page loading...");
-
-
-            const {
-                data,
-                error
-            } = await supabaseClient.auth.getUser();
-
-
-            console.log("USER:", data.user);
-            console.log("AUTH ERROR:", error);
-
-
-            /*
-             * Check whether the user is logged in.
-             */
-
-            if (error) {
-
-                document.getElementById("account-message").textContent =
-                    "Authentication error: " + error.message;
-
-                return;
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+        {
+            auth: {
+                persistSession: true,
+                autoRefreshToken: true,
+                detectSessionInUrl: true
             }
-
-
-            if (!data.user) {
-
-                document.getElementById("account-message").textContent =
-                    "You are not logged in. Please log in first.";
-
-                return;
-            }
-
-
-            const user = data.user;
-
-
-            /*
-             * EMAIL
-             *
-             * Email comes from Supabase Auth.
-             */
-
-            document.getElementById("email").textContent =
-                user.email || "Not available";
-
-            document.getElementById("account-email").textContent =
-                user.email || "";
-
-
-            /*
-             * USER METADATA
-             *
-             * Your signup page stores these values
-             * inside Supabase Auth metadata.
-             */
-
-            const username =
-                user.user_metadata?.username || "Not provided";
-
-            const nickname =
-                user.user_metadata?.nickname || "Not provided";
-
-            const phone =
-                user.user_metadata?.phone || "Not provided";
-
-            const country =
-                user.user_metadata?.country || "Not provided";
-
-
-            document.getElementById("username").textContent =
-                username;
-
-            document.getElementById("nickname").textContent =
-                nickname;
-
-            document.getElementById("phone").textContent =
-                phone;
-
-            document.getElementById("country").textContent =
-                country;
-
-
-            /*
-             * ACCOUNT ICON
-             */
-
-            const iconName =
-                username !== "Not provided"
-                    ? username
-                    : user.email || "U";
-
-
-            document.getElementById("account-icon").textContent =
-                iconName.charAt(0).toUpperCase();
-
-
-            console.log("Infinity account loaded successfully.");
-
         }
+    );
 
 
-        /*
-         * LOG OUT
-         */
+async function loadAccount() {
 
-        document
-            .getElementById("logout-button")
-            .addEventListener("click", async function () {
-
-                const {
-                    error
-                } = await supabaseClient.auth.signOut();
+    console.log("Loading Infinity account...");
 
 
-                if (error) {
-
-                    document.getElementById(
-                        "account-message"
-                    ).textContent =
-                        error.message;
-
-                    return;
-                }
+    const {
+        data: sessionData
+    } = await supabaseClient.auth.getSession();
 
 
-                window.location.href =
-                    "index.html";
-
-            });
+    console.log("SESSION:", sessionData.session);
 
 
-        /*
-         * PASSWORD
-         *
-         * Supabase does not expose the user's
-         * actual password to the website.
-         */
+    if (!sessionData.session) {
 
-        document
-            .getElementById("show-password")
-            .addEventListener("click", function () {
+        document.getElementById("account-message").textContent =
+            "You are not logged in.";
 
-                alert(
-                    "For your security, Infinity cannot display your password. You can change or reset your password instead."
-                );
+        console.log("NO SESSION FOUND");
 
-            });
+        return;
+    }
 
 
-        /*
-         * START
-         */
+    const user = sessionData.session.user;
 
-        loadAccount();
 
-    </script>
+    console.log("LOGGED-IN USER:", user);
+
+
+    /* EMAIL */
+
+    document.getElementById("email").textContent =
+        user.email || "Not available";
+
+    document.getElementById("account-email").textContent =
+        user.email || "";
+
+
+    /* USER INFORMATION */
+
+    const username =
+        user.user_metadata?.username || "Not provided";
+
+    const nickname =
+        user.user_metadata?.nickname || "Not provided";
+
+    const phone =
+        user.user_metadata?.phone || "Not provided";
+
+    const country =
+        user.user_metadata?.country || "Not provided";
+
+
+    document.getElementById("username").textContent =
+        username;
+
+    document.getElementById("nickname").textContent =
+        nickname;
+
+    document.getElementById("phone").textContent =
+        phone;
+
+    document.getElementById("country").textContent =
+        country;
+
+
+    /* ACCOUNT ICON */
+
+    const iconName =
+        username !== "Not provided"
+            ? username
+            : user.email || "U";
+
+
+    document.getElementById("account-icon").textContent =
+        iconName.charAt(0).toUpperCase();
+
+
+    console.log("ACCOUNT LOADED SUCCESSFULLY");
+
+}
+
+
+/* LOG OUT */
+
+document
+    .getElementById("logout-button")
+    .addEventListener("click", async function () {
+
+        await supabaseClient.auth.signOut();
+
+        window.location.href = "index.html";
+
+    });
+
+
+/* PASSWORD BUTTON */
+
+document
+    .getElementById("show-password")
+    .addEventListener("click", function () {
+
+        alert(
+            "For your security, Infinity cannot display your password. Supabase does not provide websites with a user's actual password."
+        );
+
+    });
+
+
+/* START */
+
+loadAccount();
+
+</script>
 
 </body>
 
