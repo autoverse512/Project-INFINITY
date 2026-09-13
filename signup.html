@@ -195,209 +195,293 @@
 
 
     <!-- SUPABASE -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+```html
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+    "https://ppsuunamsabnepjlcfyz.supabase.co";
+
+const SUPABASE_ANON_KEY =
+    "sb_publishable_QQWUTJgcwFks0Pp8Ox6NNw_DM9BFeet";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
 
 
-    <script>
+/* =========================================
+   FORM ELEMENTS
+========================================= */
+
+const form =
+    document.getElementById("signup-form");
+
+const message =
+    document.getElementById("signup-message");
+
+const signupButton =
+    document.getElementById("signup-button");
+
+
+/* =========================================
+   SIGN UP
+========================================= */
+
+form.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        /* Get values */
+
+        const username =
+            document
+                .getElementById("username")
+                .value
+                .trim();
+
+
+        const nickname =
+            document
+                .getElementById("nickname")
+                .value
+                .trim();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        const phone =
+            document
+                .getElementById("phone")
+                .value
+                .trim();
+
+
+        const country =
+            document
+                .getElementById("country")
+                .value
+                .trim();
+
+
+        /* Validate */
+
+        if (
+            !username ||
+            !nickname ||
+            !email ||
+            !password
+        ) {
+
+            message.textContent =
+                "Please fill in all required fields.";
+
+            return;
+        }
+
+
+        /* Disable button */
+
+        signupButton.disabled = true;
+
+        signupButton.textContent =
+            "Creating Account...";
+
+        message.textContent =
+            "Creating your account...";
+
 
         /* =========================================
-           SUPABASE CONFIGURATION
+           CREATE AUTH ACCOUNT
         ========================================= */
 
-        const SUPABASE_URL =
-            "https://ppsuunamsabnepjlcfyz.supabase.co";
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.auth.signUp({
 
-        const SUPABASE_ANON_KEY =
-            "sb_publishable_QQWUTJgcwFks0Pp8Ox6NNw_DM9BFeet";
+                email: email,
 
+                password: password,
 
-        const supabaseClient =
-            supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_ANON_KEY
-            );
+                options: {
 
+                    data: {
 
-        /* =========================================
-           GET FORM ELEMENTS
-        ========================================= */
+                        username: username,
 
-        const form =
-            document.getElementById("signup-form");
+                        nickname: nickname,
 
-        const message =
-            document.getElementById("signup-message");
+                        phone: phone,
 
-        const signupButton =
-            document.getElementById("signup-button");
-
-
-        /* =========================================
-           SIGN UP
-        ========================================= */
-
-        form.addEventListener(
-            "submit",
-            async function (event) {
-
-                event.preventDefault();
-
-
-                /* Get form values */
-
-                const username =
-                    document
-                        .getElementById("username")
-                        .value
-                        .trim();
-
-
-                const nickname =
-                    document
-                        .getElementById("nickname")
-                        .value
-                        .trim();
-
-
-                const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
-
-
-                const password =
-                    document
-                        .getElementById("password")
-                        .value;
-
-
-                const phone =
-                    document
-                        .getElementById("phone")
-                        .value
-                        .trim();
-
-
-                const country =
-                    document
-                        .getElementById("country")
-                        .value
-                        .trim();
-
-
-                /* Check required fields */
-
-                if (!username || !nickname || !email || !password) {
-
-                    message.textContent =
-                        "Please fill in all required fields.";
-
-                    return;
-                }
-
-
-                /* Disable button */
-
-                signupButton.disabled = true;
-
-                signupButton.textContent =
-                    "Creating Account...";
-
-
-                message.textContent =
-                    "Creating your account...";
-
-
-                /* =========================================
-                   CREATE SUPABASE AUTH ACCOUNT
-                ========================================= */
-
-                const { data, error } =
-                    await supabaseClient.auth.signUp({
-
-                        email: email,
-
-                        password: password,
-
-                        options: {
-
-                            data: {
-
-                                username: username,
-
-                                nickname: nickname,
-
-                                phone: phone,
-
-                                country: country
-
-                            }
-
-                        }
-
-                    });
-
-
-                /* =========================================
-                   HANDLE ERROR
-                ========================================= */
-
-                if (error) {
-
-                    console.error(
-                        "Signup error:",
-                        error
-                    );
-
-                    message.textContent =
-                        "Error: " + error.message;
-
-                    signupButton.disabled = false;
-
-                    signupButton.textContent =
-                        "Create Account";
-
-                    return;
-                }
-
-
-                /* =========================================
-                   SUCCESS
-                ========================================= */
-
-                if (data && data.user) {
-
-                    if (data.session) {
-
-                        message.textContent =
-                            "Account created successfully! 🎉";
-
-                    } else {
-
-                        message.textContent =
-                            "Account created! 🎉 Please check your email to verify your account.";
+                        country: country
 
                     }
 
-
-                    form.reset();
-
                 }
 
+            });
 
-                /* Enable button again */
 
-                signupButton.disabled = false;
+        /* =========================================
+           AUTH ERROR
+        ========================================= */
 
-                signupButton.textContent =
-                    "Create Account";
+        if (error) {
 
-            }
+            console.error(
+                "Signup error:",
+                error
+            );
 
+            message.textContent =
+                "Error: " +
+                error.message;
+
+            signupButton.disabled = false;
+
+            signupButton.textContent =
+                "Create Account";
+
+            return;
+        }
+
+
+        /* =========================================
+           AUTH USER CREATED
+        ========================================= */
+
+        if (!data || !data.user) {
+
+            message.textContent =
+                "Account could not be created.";
+
+            signupButton.disabled = false;
+
+            signupButton.textContent =
+                "Create Account";
+
+            return;
+        }
+
+
+        const userId =
+            data.user.id;
+
+
+        console.log(
+            "Auth user created:",
+            userId
         );
 
-    </script>
+
+        /* =========================================
+           CREATE PROFILE
+        ========================================= */
+
+        const {
+            data: profile,
+            error: profileError
+        } =
+            await supabaseClient
+                .from("profiles")
+                .insert({
+
+                    id: userId,
+
+                    username: username,
+
+                    nickname: nickname,
+
+                    phone: phone,
+
+                    country: country
+
+                })
+                .select()
+                .single();
+
+
+        /* =========================================
+           PROFILE ERROR
+        ========================================= */
+
+        if (profileError) {
+
+            console.error(
+                "Profile creation error:",
+                profileError
+            );
+
+
+            message.textContent =
+                "Account created, but profile could not be saved: " +
+                profileError.message;
+
+
+            signupButton.disabled = false;
+
+            signupButton.textContent =
+                "Create Account";
+
+            return;
+        }
+
+
+        console.log(
+            "Profile created:",
+            profile
+        );
+
+
+        /* =========================================
+           SUCCESS
+        ========================================= */
+
+        if (data.session) {
+
+            message.textContent =
+                "Account created successfully! 🎉";
+
+        } else {
+
+            message.textContent =
+                "Account created! 🎉 Please check your email to verify your account.";
+
+        }
+
+
+        form.reset();
+
+
+        signupButton.disabled = false;
+
+        signupButton.textContent =
+            "Create Account";
+
+    }
+);
+
+</script>
+```
 
 </body>
 
