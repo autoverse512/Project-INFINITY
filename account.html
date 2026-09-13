@@ -1,7 +1,9 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,6 +12,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
+
         .account-page {
             min-height: calc(100vh - 80px);
             display: flex;
@@ -204,13 +207,17 @@
             .detail-item strong {
                 max-width: 55%;
             }
+
         }
+
     </style>
 
 </head>
 
 
 <body>
+
+    <!-- NAVBAR -->
 
     <nav class="navbar">
 
@@ -225,9 +232,13 @@
     </nav>
 
 
+    <!-- ACCOUNT -->
+
     <main class="account-page">
 
         <div class="account-container">
+
+            <!-- HEADER -->
 
             <div class="account-header">
 
@@ -252,32 +263,64 @@
             </div>
 
 
+            <!-- ACCOUNT DETAILS -->
+
             <div class="account-details">
 
                 <div class="detail-item">
+
                     <span>Username</span>
-                    <strong id="username">Loading...</strong>
+
+                    <strong id="username">
+                        Loading...
+                    </strong>
+
                 </div>
 
+
                 <div class="detail-item">
+
                     <span>Nickname</span>
-                    <strong id="nickname">Loading...</strong>
+
+                    <strong id="nickname">
+                        Loading...
+                    </strong>
+
                 </div>
 
+
                 <div class="detail-item">
+
                     <span>Email</span>
-                    <strong id="email">Loading...</strong>
+
+                    <strong id="email">
+                        Loading...
+                    </strong>
+
                 </div>
 
+
                 <div class="detail-item">
+
                     <span>Phone</span>
-                    <strong id="phone">Not provided</strong>
+
+                    <strong id="phone">
+                        Not provided
+                    </strong>
+
                 </div>
 
+
                 <div class="detail-item">
+
                     <span>Country</span>
-                    <strong id="country">Not provided</strong>
+
+                    <strong id="country">
+                        Not provided
+                    </strong>
+
                 </div>
+
 
                 <div class="detail-item">
 
@@ -303,10 +346,14 @@
             </div>
 
 
+            <!-- LOGOUT -->
+
             <button
                 id="logout-button"
                 class="button logout-button">
+
                 Log Out
+
             </button>
 
 
@@ -317,180 +364,465 @@
     </main>
 
 
-   ```html
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- SUPABASE -->
 
-<script>
-
-const SUPABASE_URL = "https://ppsuunamsabnepjlcfyz.supabase.co";
-
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwc3V1bmFtc2FibmVwamxjZnl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NTk1NzgsImV4cCI6MjEwNDUzNTU3OH0.iua178hKtB6K7UbLFr1m2-SEpF9X7l8SErlULqOxHB0";
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-async function loadAccount() {
+    <script>
 
-    const message = document.getElementById("account-message");
+        /* =========================================
+           SUPABASE CONFIGURATION
+        ========================================= */
 
-    message.textContent = "Loading account...";
+        const SUPABASE_URL =
+            "https://ppsuunamsabnepjlcfyz.supabase.co";
 
-    try {
+        const SUPABASE_ANON_KEY =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwc3V1bmFtc2FibmVwamxjZnl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NTk1NzgsImV4cCI6MjEwNDUzNTU3OH0.iua178hKtB6K7UbLFr1m2-SEpF9X7l8SErlULqOxHB0";
 
-        const result = await supabaseClient.auth.getSession();
 
-        console.log("Supabase result:", result);
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_ANON_KEY
+            );
 
-        if (result.error) {
 
-            console.error(result.error);
+        /* =========================================
+           LOAD ACCOUNT
+        ========================================= */
+
+        async function loadAccount() {
+
+            const message =
+                document.getElementById("account-message");
 
             message.textContent =
-                "Session error: " + result.error.message;
+                "Loading account...";
 
-            return;
+
+            try {
+
+                /* Get current session */
+
+                const {
+                    data: sessionData,
+                    error: sessionError
+                } =
+                    await supabaseClient.auth.getSession();
+
+
+                console.log(
+                    "Supabase session:",
+                    sessionData
+                );
+
+
+                /* Session error */
+
+                if (sessionError) {
+
+                    console.error(
+                        "Session error:",
+                        sessionError
+                    );
+
+                    message.textContent =
+                        "Session error: " +
+                        sessionError.message;
+
+                    return;
+                }
+
+
+                /* No logged-in user */
+
+                const session =
+                    sessionData.session;
+
+
+                if (!session) {
+
+                    message.textContent =
+                        "You are not logged in.";
+
+
+                    setTimeout(function () {
+
+                        window.location.href =
+                            "login.html";
+
+                    }, 1200);
+
+
+                    return;
+                }
+
+
+                /* Current user */
+
+                const user =
+                    session.user;
+
+
+                console.log(
+                    "Logged in user:",
+                    user
+                );
+
+
+                /* =========================================
+                   GET PROFILE
+                ========================================= */
+
+                const {
+                    data: profile,
+                    error: profileError
+                } =
+                    await supabaseClient
+                        .from("profiles")
+                        .select(
+                            "username, nickname, phone, country"
+                        )
+                        .eq("id", user.id)
+                        .maybeSingle();
+
+
+                console.log(
+                    "Profile result:",
+                    profile,
+                    profileError
+                );
+
+
+                /* =========================================
+                   PROFILE ERROR
+                ========================================= */
+
+                if (profileError) {
+
+                    console.error(
+                        "Profile error:",
+                        profileError
+                    );
+
+                    message.textContent =
+                        "Could not load your profile: " +
+                        profileError.message;
+
+                    return;
+                }
+
+
+                /* =========================================
+                   PROFILE DOES NOT EXIST
+                ========================================= */
+
+                if (!profile) {
+
+                    console.warn(
+                        "No profile found for user:",
+                        user.id
+                    );
+
+
+                    /*
+                       Use Auth metadata as a fallback.
+                       This allows the account page to still
+                       display information for older accounts
+                       that were created before the profiles
+                       table was connected.
+                    */
+
+                    const metadata =
+                        user.user_metadata || {};
+
+
+                    const username =
+                        metadata.username ||
+                        "Not provided";
+
+
+                    const nickname =
+                        metadata.nickname ||
+                        "Not provided";
+
+
+                    const phone =
+                        metadata.phone ||
+                        "Not provided";
+
+
+                    const country =
+                        metadata.country ||
+                        "Not provided";
+
+
+                    displayAccount(
+                        user,
+                        username,
+                        nickname,
+                        phone,
+                        country
+                    );
+
+
+                    message.textContent =
+                        "Profile database entry not found. Showing your saved account information.";
+
+
+                    return;
+                }
+
+
+                /* =========================================
+                   PROFILE EXISTS
+                ========================================= */
+
+                const username =
+                    profile.username ||
+                    "Not provided";
+
+
+                const nickname =
+                    profile.nickname ||
+                    "Not provided";
+
+
+                const phone =
+                    profile.phone ||
+                    "Not provided";
+
+
+                const country =
+                    profile.country ||
+                    "Not provided";
+
+
+                displayAccount(
+                    user,
+                    username,
+                    nickname,
+                    phone,
+                    country
+                );
+
+
+                message.textContent = "";
+
+
+                console.log(
+                    "Infinity account loaded successfully."
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Account error:",
+                    error
+                );
+
+                message.textContent =
+                    "Error: " +
+                    error.message;
+
+            }
+
         }
 
-        const session = result.data.session;
 
-        if (!session) {
+        /* =========================================
+           DISPLAY ACCOUNT
+        ========================================= */
 
-            message.textContent = "You are not logged in.";
+        function displayAccount(
+            user,
+            username,
+            nickname,
+            phone,
+            country
+        ) {
 
-            setTimeout(function () {
-                window.location.href = "login.html";
-            }, 1200);
+            /* Email */
 
-            return;
+            document.getElementById(
+                "email"
+            ).textContent =
+                user.email ||
+                "Not available";
+
+
+            document.getElementById(
+                "account-email"
+            ).textContent =
+                user.email ||
+                "";
+
+
+            /* Username */
+
+            document.getElementById(
+                "username"
+            ).textContent =
+                username;
+
+
+            /* Nickname */
+
+            document.getElementById(
+                "nickname"
+            ).textContent =
+                nickname;
+
+
+            /* Phone */
+
+            document.getElementById(
+                "phone"
+            ).textContent =
+                phone;
+
+
+            /* Country */
+
+            document.getElementById(
+                "country"
+            ).textContent =
+                country;
+
+
+            /* =========================================
+               ACCOUNT ICON
+            ========================================= */
+
+            let displayName =
+                username;
+
+
+            if (
+                displayName === "Not provided"
+            ) {
+
+                displayName =
+                    nickname;
+
+            }
+
+
+            if (
+                displayName === "Not provided"
+            ) {
+
+                displayName =
+                    user.email ||
+                    "U";
+
+            }
+
+
+            document.getElementById(
+                "account-icon"
+            ).textContent =
+                displayName
+                    .charAt(0)
+                    .toUpperCase();
+
         }
 
-        const user = session.user;
 
-        const metadata = user.user_metadata || {};
+        /* =========================================
+           LOGOUT
+        ========================================= */
 
-const { data: profile, error: profileError } =
-    await supabaseClient
-        .from("profiles")
-        .select("username, nickname, phone, country")
-        .eq("id", user.id)
-        .single();
+        document
+            .getElementById("logout-button")
+            .addEventListener(
+                "click",
+                async function () {
 
-
-if (profileError) {
-
-    console.error("Profile error:", profileError);
-
-    message.textContent =
-        "Could not load your profile: " +
-        profileError.message;
-
-    return;
-}
+                    const button =
+                        document.getElementById(
+                            "logout-button"
+                        );
 
 
-const username =
-    profile?.username || "Not provided";
+                    button.disabled = true;
 
-const nickname =
-    profile?.nickname || "Not provided";
-
-const phone =
-    profile?.phone || "Not provided";
-
-const country =
-    profile?.country || "Not provided";
+                    button.textContent =
+                        "Logging out...";
 
 
-        document.getElementById("email").textContent =
-            user.email || "Not available";
-
-        document.getElementById("account-email").textContent =
-            user.email || "";
-
-        document.getElementById("username").textContent =
-            username;
-
-        document.getElementById("nickname").textContent =
-            nickname;
-
-        document.getElementById("phone").textContent =
-            phone;
-
-        document.getElementById("country").textContent =
-            country;
+                    const {
+                        error
+                    } =
+                        await supabaseClient
+                            .auth
+                            .signOut();
 
 
-        let displayName = username;
+                    if (error) {
 
-        if (username === "Not provided") {
-            displayName = nickname;
-        }
-
-        if (displayName === "Not provided") {
-            displayName = user.email || "U";
-        }
+                        console.error(
+                            "Logout error:",
+                            error
+                        );
 
 
-        document.getElementById("account-icon").textContent =
-            displayName.charAt(0).toUpperCase();
+                        document
+                            .getElementById(
+                                "account-message"
+                            )
+                            .textContent =
+                            error.message;
 
 
-        message.textContent = "";
+                        button.disabled = false;
 
-        console.log("Infinity account loaded.");
+                        button.textContent =
+                            "Log Out";
 
-    }
-
-    catch (error) {
-
-        console.error("Account error:", error);
-
-        message.textContent =
-            "Error: " + error.message;
-    }
-}
+                        return;
+                    }
 
 
-document
-    .getElementById("logout-button")
-    .addEventListener("click", async function () {
+                    window.location.href =
+                        "index.html";
 
-        const result =
-            await supabaseClient.auth.signOut();
-
-        if (result.error) {
-
-            console.error(result.error);
-
-            document.getElementById("account-message").textContent =
-                result.error.message;
-
-            return;
-        }
-
-        window.location.href = "index.html";
-
-    });
+                }
+            );
 
 
-document
-    .getElementById("show-password")
-    .addEventListener("click", function () {
+        /* =========================================
+           PASSWORD BUTTON
+        ========================================= */
 
-        alert(
-            "For your security, Infinity cannot display your actual password."
-        );
+        document
+            .getElementById("show-password")
+            .addEventListener(
+                "click",
+                function () {
 
-    });
+                    alert(
+                        "For your security, Infinity cannot display your actual password."
+                    );
+
+                }
+            );
 
 
-loadAccount();
+        /* =========================================
+           START
+        ========================================= */
 
-</script>
+        loadAccount();
+
+    </script>
 
 </body>
 
 </html>
+```
