@@ -13,9 +13,11 @@ const doneButton = document.getElementById("doneButton");
 COLOUR MENU
 ========================================= */
 
-colorButton.addEventListener("click", function () {
+colorButton.addEventListener("click", function (event) {
 
 ```
+event.stopPropagation();
+
 fontMenu.classList.remove("show");
 
 colorMenu.classList.toggle("show");
@@ -27,9 +29,11 @@ colorMenu.classList.toggle("show");
 FONT MENU
 ========================================= */
 
-fontButton.addEventListener("click", function () {
+fontButton.addEventListener("click", function (event) {
 
 ```
+event.stopPropagation();
+
 colorMenu.classList.remove("show");
 
 fontMenu.classList.toggle("show");
@@ -38,15 +42,19 @@ fontMenu.classList.toggle("show");
 });
 
 /* =========================================
-CHANGE TEXT COLOUR
+COLOUR OPTIONS
 ========================================= */
 
-document.querySelectorAll("[data-color]").forEach(function (button) {
+const colorOptions = document.querySelectorAll("[data-color]");
+
+colorOptions.forEach(function (button) {
 
 ```
-button.addEventListener("click", function () {
+const color = button.dataset.color;
 
-    const color = this.dataset.color;
+button.style.setProperty("--color", color);
+
+button.addEventListener("click", function () {
 
     poemContent.style.color = color;
 
@@ -60,15 +68,17 @@ button.addEventListener("click", function () {
 });
 
 /* =========================================
-CHANGE FONT
+FONT OPTIONS
 ========================================= */
 
-document.querySelectorAll("[data-font]").forEach(function (button) {
+const fontOptions = document.querySelectorAll("[data-font]");
+
+fontOptions.forEach(function (button) {
 
 ```
 button.addEventListener("click", function () {
 
-    const font = this.dataset.font;
+    const font = button.dataset.font;
 
     poemContent.style.fontFamily = font;
 
@@ -82,23 +92,22 @@ button.addEventListener("click", function () {
 });
 
 /* =========================================
-CLOSE MENUS WHEN CLICKING OUTSIDE
+CLOSE MENUS
 ========================================= */
 
 document.addEventListener("click", function (event) {
 
 ```
 if (
-    !colorButton.contains(event.target) &&
-    !colorMenu.contains(event.target)
+    !colorMenu.contains(event.target) &&
+    event.target !== colorButton
 ) {
     colorMenu.classList.remove("show");
 }
 
-
 if (
-    !fontButton.contains(event.target) &&
-    !fontMenu.contains(event.target)
+    !fontMenu.contains(event.target) &&
+    event.target !== fontButton
 ) {
     fontMenu.classList.remove("show");
 }
@@ -107,8 +116,8 @@ if (
 });
 
 /* =========================================
-DONE BUTTON
-NOTHING HAPPENS YET
+DONE
+NOTHING YET
 ========================================= */
 
 doneButton.addEventListener("click", function () {
