@@ -9,12 +9,11 @@ min-height: 100vh;
 background: #111214;
 color: white;
 font-family: Arial, Helvetica, sans-serif;
-overflow-x: hidden;
 }
 
-/* =========================================
+/* ================================
 TOP BAR
-========================================= */
+================================ */
 
 .editor-topbar {
 position: fixed;
@@ -31,64 +30,53 @@ justify-content: space-between;
 
 padding: 0 30px;
 
-background: rgba(10, 11, 14, 0.92);
+background: rgba(10, 11, 14, 0.94);
+
 backdrop-filter: blur(18px);
 -webkit-backdrop-filter: blur(18px);
 
 border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
 
-z-index: 100;
+z-index: 1000;
 ```
 
 }
 
-/* =========================================
-EXIT
-========================================= */
+/* EXIT */
 
 .exit-button {
-border: 1px solid rgba(255, 255, 255, 0.10);
+border: 1px solid rgba(255, 255, 255, 0.12);
 
 ```
-background: rgba(255, 255, 255, 0.045);
+background: rgba(255, 255, 255, 0.05);
 
-color: #d0d1d8;
-
-font-size: 14px;
-font-weight: 600;
+color: #d5d5dc;
 
 padding: 10px 16px;
 
 border-radius: 11px;
 
+font-size: 14px;
+font-weight: 600;
+
 cursor: pointer;
 
-box-shadow:
-    0 5px 14px rgba(0, 0, 0, 0.28);
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 
-transition: 0.22s ease;
+transition: 0.2s;
 ```
 
 }
 
 .exit-button:hover {
 color: white;
-
-```
-background: rgba(255, 255, 255, 0.08);
-
-border-color: rgba(167, 151, 255, 0.35);
-
-transform: translateY(-1px);
-```
-
+background: rgba(255, 255, 255, 0.09);
+transform: translateY(-2px);
 }
 
-/* =========================================
-TOP CONTROLS
-========================================= */
+/* CONTROLS */
 
 .top-controls {
 display: flex;
@@ -96,12 +84,10 @@ align-items: center;
 gap: 9px;
 }
 
-/* =========================================
-DONE
-========================================= */
+/* DONE */
 
 .done-button {
-border: 1px solid rgba(167, 151, 255, 0.35);
+border: 1px solid rgba(150, 140, 255, 0.4);
 
 ```
 color: white;
@@ -115,17 +101,16 @@ font-weight: 700;
 
 cursor: pointer;
 
-background:
-    linear-gradient(
-        135deg,
-        #7160e9,
-        #4daedb
-    );
+background: linear-gradient(
+    135deg,
+    #7160e9,
+    #4daedb
+);
 
 box-shadow:
-    0 6px 18px rgba(65, 85, 200, 0.32);
+    0 6px 20px rgba(70, 80, 200, 0.35);
 
-transition: 0.22s ease;
+transition: 0.2s;
 ```
 
 }
@@ -135,19 +120,24 @@ transform: translateY(-2px);
 
 ```
 box-shadow:
-    0 9px 24px rgba(65, 85, 200, 0.42);
+    0 9px 25px rgba(70, 80, 200, 0.45);
 ```
 
 }
 
-/* =========================================
-COLOUR + FONT BUTTONS
-========================================= */
+/* COLOUR / FONT */
 
 .tool-button {
-border: 1px solid rgba(167, 151, 255, 0.20);
+border: 1px solid rgba(167, 151, 255, 0.22);
 
 ```
+background:
+    linear-gradient(
+        135deg,
+        rgba(167, 151, 255, 0.12),
+        rgba(114, 220, 255, 0.06)
+    );
+
 color: #dedee7;
 
 padding: 10px 14px;
@@ -159,17 +149,10 @@ font-weight: 600;
 
 cursor: pointer;
 
-background:
-    linear-gradient(
-        145deg,
-        rgba(167, 151, 255, 0.10),
-        rgba(114, 220, 255, 0.055)
-    );
-
 box-shadow:
-    0 5px 15px rgba(0, 0, 0, 0.30);
+    0 6px 17px rgba(0, 0, 0, 0.35);
 
-transition: 0.22s ease;
+transition: 0.2s;
 ```
 
 }
@@ -178,80 +161,84 @@ transition: 0.22s ease;
 color: white;
 
 ```
-border-color: rgba(167, 151, 255, 0.45);
-
-background:
-    linear-gradient(
-        145deg,
-        rgba(167, 151, 255, 0.17),
-        rgba(114, 220, 255, 0.10)
-    );
+border-color: rgba(167, 151, 255, 0.5);
 
 transform: translateY(-2px);
 
 box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.40);
+    0 9px 22px rgba(0, 0, 0, 0.45);
 ```
 
 }
 
-.tool-icon {
+.color-preview {
+display: inline-block;
+
+```
+width: 12px;
+height: 12px;
+
+margin-right: 6px;
+
+border-radius: 50%;
+
+background: #ffffff;
+
+border: 1px solid rgba(255, 255, 255, 0.5);
+```
+
+}
+
+.font-preview {
 color: #a797ff;
 margin-right: 5px;
 }
 
-/* =========================================
+/* ================================
 EDITOR BACKGROUND
-========================================= */
+================================ */
 
 .notebook-wrapper {
 min-height: 100vh;
 
 ```
 padding:
-    125px
+    120px
     35px
     70px;
 
 display: flex;
 justify-content: center;
 
-background:
-    radial-gradient(
-        circle at 15% 20%,
-        rgba(90, 70, 170, 0.08),
-        transparent 30%
-    ),
-    #111214;
+background: #111214;
 ```
 
 }
 
-/* =========================================
+/* ================================
 NOTEBOOK PAGE
-========================================= */
+================================ */
 
 .notebook {
+position: relative;
 
 ```
 width: min(900px, 100%);
 
 min-height: 1050px;
 
-position: relative;
-
-background: #f3f0e7;
+background: #f4f1e8;
 
 border-radius: 3px;
 
 overflow: hidden;
 
 box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.65),
-    0 2px 5px rgba(0, 0, 0, 0.35);
+    0 30px 80px rgba(0, 0, 0, 0.7),
+    0 3px 8px rgba(0, 0, 0, 0.4);
 
 /*
-   Real notebook horizontal lines
+   BLUE NOTEBOOK LINES
 */
 
 background-image:
@@ -259,16 +246,16 @@ background-image:
         to bottom,
         transparent 0px,
         transparent 31px,
-        rgba(88, 126, 170, 0.28) 32px,
+        rgba(75, 118, 165, 0.27) 32px,
         transparent 33px
     );
 ```
 
 }
 
-/* =========================================
+/* ================================
 DOUBLE RED MARGIN
-========================================= */
+================================ */
 
 .notebook-margin {
 position: absolute;
@@ -277,53 +264,72 @@ position: absolute;
 top: 0;
 bottom: 0;
 
-left: 88px;
+left: 82px;
 
-width: 8px;
+width: 16px;
 
-border-left: 2px solid rgba(190, 52, 52, 0.72);
-border-right: 2px solid rgba(190, 52, 52, 0.72);
+z-index: 20;
 
 pointer-events: none;
-
-z-index: 5;
 ```
 
 }
 
-/* =========================================
+/* THE TWO RED LINES */
+
+.margin-line {
+position: absolute;
+
+```
+top: 0;
+bottom: 0;
+
+width: 2px;
+
+background: #c84d50;
+
+opacity: 0.75;
+```
+
+}
+
+.line-one {
+left: 0;
+}
+
+.line-two {
+right: 0;
+}
+
+/* ================================
 PAGE CONTENT
-========================================= */
+================================ */
 
 .page-content {
-
-```
 position: relative;
 
-margin-left: 96px;
+```
+margin-left: 98px;
 
 padding:
-    38px
-    48px
+    35px
+    45px
     80px
-    30px;
+    28px;
 
 min-height: 1050px;
-
-z-index: 2;
 ```
 
 }
 
-/* =========================================
+/* ================================
 TITLE
-========================================= */
+================================ */
 
 .poem-title {
-
-```
 width: 100%;
 
+```
 border: none;
 outline: none;
 
@@ -331,41 +337,39 @@ background: transparent;
 
 color: #17181b;
 
-font-family: Georgia, "Times New Roman", serif;
+font-family: Georgia, serif;
 
 font-size: 32px;
-
 font-weight: 700;
 
-line-height: 33px;
+line-height: 32px;
 
 padding: 0;
 
-margin-bottom: 5px;
+margin: 0 0 5px 0;
 ```
 
 }
 
 .poem-title::placeholder {
-color: rgba(30, 30, 30, 0.32);
+color: rgba(30, 30, 30, 0.30);
 }
 
-/* =========================================
-WRITING AREA
-========================================= */
+/* ================================
+WRITING
+================================ */
 
 .poem-content {
-
-```
 width: 100%;
 
+```
 min-height: 850px;
 
 outline: none;
 
 color: #17181b;
 
-font-family: Georgia, "Times New Roman", serif;
+font-family: Georgia, serif;
 
 font-size: 19px;
 
@@ -374,17 +378,14 @@ line-height: 32px;
 white-space: pre-wrap;
 
 word-wrap: break-word;
-
-caret-color: #5757ff;
 ```
 
 }
 
 .poem-content:empty::before {
-
-```
 content: attr(data-placeholder);
 
+```
 color: rgba(30, 30, 30, 0.30);
 
 pointer-events: none;
@@ -392,26 +393,24 @@ pointer-events: none;
 
 }
 
-/* =========================================
-COLOUR / FONT MENUS
-========================================= */
+/* ================================
+POPUP MENUS
+================================ */
 
 .tool-menu {
-
-```
 position: fixed;
 
+```
 top: 67px;
-
 right: 28px;
 
 width: 190px;
 
-padding: 10px;
+padding: 8px;
 
-border-radius: 15px;
+border-radius: 14px;
 
-background: rgba(23, 24, 31, 0.97);
+background: rgba(23, 24, 31, 0.98);
 
 border: 1px solid rgba(255, 255, 255, 0.10);
 
@@ -419,11 +418,11 @@ backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
 
 box-shadow:
-    0 15px 45px rgba(0, 0, 0, 0.55);
+    0 18px 45px rgba(0, 0, 0, 0.6);
+
+z-index: 2000;
 
 display: none;
-
-z-index: 200;
 ```
 
 }
@@ -432,78 +431,204 @@ z-index: 200;
 display: block;
 }
 
-/* =========================================
+/* ================================
 COLOUR OPTIONS
-========================================= */
+================================ */
 
-.color-menu {
-width: 210px;
-}
-
-.color-menu button {
-
-```
+.color-option {
 width: 100%;
 
+```
 display: flex;
-
 align-items: center;
 
-gap: 11px;
+gap: 10px;
 
 border: none;
 
 background: transparent;
 
-color: #d5d5df;
-
-text-align: left;
+color: #d8d8e0;
 
 padding: 10px;
 
-border-radius: 9px;
+border-radius: 8px;
 
 cursor: pointer;
 
 font-size: 13px;
 
-transition: 0.16s ease;
+text-align: left;
 ```
 
 }
 
-.color-menu button::before {
-
-```
-content: "";
-
-width: 17px;
-height: 17px;
-
-border-radius: 50%;
-
-background: var(--color);
-
-border: 1px solid rgba(255, 255, 255, 0.25);
-
-box-shadow:
-    0 0 8px rgba(255, 255, 255, 0.08);
-```
-
-}
-
-.color-menu button:hover {
-
-```
+.color-option:hover {
 background: rgba(255, 255, 255, 0.08);
 
+```
 color: white;
 ```
 
 }
 
-/* =========================================
-FONT OPTIONS
-========================================= */
+/* COLOUR CIRCLES */
 
-.font-menu button
+.color-dot {
+width: 17px;
+height: 17px;
+
+```
+min-width: 17px;
+
+border-radius: 50%;
+
+border: 1px solid rgba(0, 0, 0, 0.25);
+```
+
+}
+
+.color-dot.black {
+background: #171717;
+}
+
+.color-dot.white {
+background: #ffffff;
+}
+
+.color-dot.purple {
+background: #665cff;
+}
+
+.color-dot.blue {
+background: #269bd7;
+}
+
+.color-dot.red {
+background: #d94b5f;
+}
+
+.color-dot.green {
+background: #278653;
+}
+
+.color-dot.gold {
+background: #c18a27;
+}
+
+/* ================================
+FONT OPTIONS
+================================ */
+
+.font-menu button {
+width: 100%;
+
+```
+border: none;
+
+background: transparent;
+
+color: #d8d8e0;
+
+padding: 11px;
+
+border-radius: 8px;
+
+text-align: left;
+
+cursor: pointer;
+
+font-size: 14px;
+```
+
+}
+
+.font-menu button:hover {
+background:
+linear-gradient(
+90deg,
+rgba(167, 151, 255, 0.14),
+rgba(114, 220, 255, 0.07)
+);
+
+```
+color: white;
+```
+
+}
+
+/* ================================
+MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+```
+.editor-topbar {
+    height: 68px;
+    padding: 0 10px;
+}
+
+.top-controls {
+    gap: 4px;
+}
+
+.tool-button {
+    padding: 8px 8px;
+    font-size: 11px;
+}
+
+.done-button {
+    padding: 8px 11px;
+    font-size: 12px;
+}
+
+.exit-button {
+    padding: 8px 10px;
+    font-size: 12px;
+}
+
+.notebook-wrapper {
+    padding:
+        100px
+        8px
+        40px;
+}
+
+.notebook {
+    min-height: 900px;
+}
+
+.notebook-margin {
+    left: 48px;
+    width: 15px;
+}
+
+.page-content {
+    margin-left: 63px;
+
+    padding:
+        35px
+        18px
+        60px
+        18px;
+
+    min-height: 900px;
+}
+
+.poem-title {
+    font-size: 25px;
+}
+
+.poem-content {
+    font-size: 17px;
+    line-height: 32px;
+}
+
+.tool-menu {
+    top: 61px;
+    right: 8px;
+}
+```
+
+}
