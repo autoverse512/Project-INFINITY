@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Poetry & Writing — Infinity</title>
+
+<link rel="stylesheet" href="poetry.css">
+```
+
+</head>
+
+<body>
+
+```
+<!-- TOP BAR -->
+<header class="editor-topbar">
+
+    <!-- EXIT -->
+    <button class="exit-button" onclick="window.location.href='creator.html'">
+        ← Exit
+    </button>
+
+
+    <!-- RIGHT CONTROLS -->
+    <div class="top-controls">
+
+        <!-- DONE -->
+        <button class="done-button" id="doneButton">
+            Done
+        </button>
+
+        <!-- COLOUR -->
+        <button class="tool-button" id="colorButton">
+            <span class="tool-icon">●</span>
+            Colour
+        </button>
+
+        <!-- FONT -->
+        <button class="tool-button" id="fontButton">
+            <span class="tool-icon">Aa</span>
+            Font
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- COLOUR MENU -->
+<div class="tool-menu color-menu" id="colorMenu">
+
+    <button data-color="#ffffff">White</button>
+    <button data-color="#a797ff">Purple</button>
+    <button data-color="#72dcff">Blue</button>
+    <button data-color="#ff8fb3">Pink</button>
+    <button data-color="#ffd166">Yellow</button>
+
+</div>
+
+
+<!-- FONT MENU -->
+<div class="tool-menu font-menu" id="fontMenu">
+
+    <button data-font="Georgia">Classic</button>
+    <button data-font="Arial">Modern</button>
+    <button data-font="'Courier New'">Typewriter</button>
+    <button data-font="'Trebuchet MS'">Clean</button>
+    <button data-font="'Times New Roman'">Literary</button>
+
+</div>
+
+
+<!-- NOTEBOOK -->
+<main class="notebook-wrapper">
+
+    <section class="notebook">
+
+        <!-- LEFT MARGIN -->
+        <div class="notebook-margin"></div>
+
+
+        <!-- PAGE CONTENT -->
+        <div class="page-content">
+
+            <!-- HEADING -->
+            <input
+                type="text"
+                id="poemTitle"
+                class="poem-title"
+                placeholder="Write your title..."
+                maxlength="120"
+            >
+
+
+            <!-- WRITING AREA -->
+            <div
+                id="poemContent"
+                class="poem-content"
+                contenteditable="true"
+                spellcheck="true"
+                data-placeholder="Start writing..."
+            ></div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="poetry.js"></script>
+```
+
+</body>
+
+</html>
