@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+```
 const poemContent = document.getElementById("poemContent");
 const poemTitle = document.getElementById("poemTitle");
 
@@ -9,121 +12,111 @@ const fontMenu = document.getElementById("fontMenu");
 
 const doneButton = document.getElementById("doneButton");
 
-/* =========================================
-COLOUR MENU
-========================================= */
+
+/* ================================
+   COLOUR BUTTON
+================================ */
 
 colorButton.addEventListener("click", function (event) {
 
-```
-event.stopPropagation();
+    event.stopPropagation();
 
-fontMenu.classList.remove("show");
+    fontMenu.classList.remove("show");
 
-colorMenu.classList.toggle("show");
-```
+    colorMenu.classList.toggle("show");
 
 });
 
-/* =========================================
-FONT MENU
-========================================= */
+
+/* ================================
+   FONT BUTTON
+================================ */
 
 fontButton.addEventListener("click", function (event) {
 
-```
-event.stopPropagation();
-
-colorMenu.classList.remove("show");
-
-fontMenu.classList.toggle("show");
-```
-
-});
-
-/* =========================================
-COLOUR OPTIONS
-========================================= */
-
-const colorOptions = document.querySelectorAll("[data-color]");
-
-colorOptions.forEach(function (button) {
-
-```
-const color = button.dataset.color;
-
-button.style.setProperty("--color", color);
-
-button.addEventListener("click", function () {
-
-    poemContent.style.color = color;
-
-    poemTitle.style.color = color;
+    event.stopPropagation();
 
     colorMenu.classList.remove("show");
 
-});
-```
+    fontMenu.classList.toggle("show");
 
 });
 
-/* =========================================
-FONT OPTIONS
-========================================= */
 
-const fontOptions = document.querySelectorAll("[data-font]");
+/* ================================
+   COLOUR SELECTION
+================================ */
 
-fontOptions.forEach(function (button) {
+document.querySelectorAll(".color-option").forEach(function (button) {
 
-```
-button.addEventListener("click", function () {
+    button.addEventListener("click", function () {
 
-    const font = button.dataset.font;
+        const selectedColor = this.getAttribute("data-color");
 
-    poemContent.style.fontFamily = font;
+        poemContent.style.color = selectedColor;
+        poemTitle.style.color = selectedColor;
 
-    poemTitle.style.fontFamily = font;
+        colorMenu.classList.remove("show");
 
-    fontMenu.classList.remove("show");
-
-});
-```
+    });
 
 });
 
-/* =========================================
-CLOSE MENUS
-========================================= */
+
+/* ================================
+   FONT SELECTION
+================================ */
+
+document.querySelectorAll(".font-menu button").forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+        const selectedFont = this.getAttribute("data-font");
+
+        poemContent.style.fontFamily = selectedFont;
+        poemTitle.style.fontFamily = selectedFont;
+
+        fontMenu.classList.remove("show");
+
+    });
+
+});
+
+
+/* ================================
+   CLOSE MENUS
+================================ */
 
 document.addEventListener("click", function (event) {
 
-```
-if (
-    !colorMenu.contains(event.target) &&
-    event.target !== colorButton
-) {
-    colorMenu.classList.remove("show");
-}
+    if (
+        !colorMenu.contains(event.target) &&
+        event.target !== colorButton
+    ) {
+        colorMenu.classList.remove("show");
+    }
 
-if (
-    !fontMenu.contains(event.target) &&
-    event.target !== fontButton
-) {
-    fontMenu.classList.remove("show");
-}
-```
+
+    if (
+        !fontMenu.contains(event.target) &&
+        event.target !== fontButton
+    ) {
+        fontMenu.classList.remove("show");
+    }
 
 });
 
-/* =========================================
-DONE
-NOTHING YET
-========================================= */
+
+/* ================================
+   DONE BUTTON
+   NOTHING YET
+================================ */
 
 doneButton.addEventListener("click", function () {
 
-```
-// Publishing will be added later.
+    // We will add saving/publishing later.
+
+});
 ```
 
 });
