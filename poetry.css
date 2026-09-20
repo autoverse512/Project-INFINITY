@@ -6,28 +6,10 @@
 
 body {
 min-height: 100vh;
-
-```
-background:
-    radial-gradient(
-        circle at 20% 0%,
-        rgba(98, 70, 255, 0.12),
-        transparent 30%
-    ),
-    radial-gradient(
-        circle at 90% 100%,
-        rgba(40, 160, 255, 0.10),
-        transparent 30%
-    ),
-    #07080c;
-
+background: #111214;
 color: white;
-
 font-family: Arial, Helvetica, sans-serif;
-
 overflow-x: hidden;
-```
-
 }
 
 /* =========================================
@@ -36,26 +18,26 @@ TOP BAR
 
 .editor-topbar {
 position: fixed;
-
-```
 top: 0;
 left: 0;
 right: 0;
 
-height: 74px;
+```
+height: 76px;
 
 display: flex;
 align-items: center;
 justify-content: space-between;
 
-padding: 0 28px;
+padding: 0 30px;
 
-background: rgba(7, 8, 12, 0.82);
-
+background: rgba(10, 11, 14, 0.92);
 backdrop-filter: blur(18px);
 -webkit-backdrop-filter: blur(18px);
 
 border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
 
 z-index: 100;
 ```
@@ -63,27 +45,30 @@ z-index: 100;
 }
 
 /* =========================================
-EXIT BUTTON
+EXIT
 ========================================= */
 
 .exit-button {
-border: none;
+border: 1px solid rgba(255, 255, 255, 0.10);
 
 ```
-background: transparent;
+background: rgba(255, 255, 255, 0.045);
 
-color: #b9bac6;
+color: #d0d1d8;
 
-font-size: 15px;
+font-size: 14px;
 font-weight: 600;
 
-padding: 10px 14px;
+padding: 10px 16px;
 
-border-radius: 10px;
+border-radius: 11px;
 
 cursor: pointer;
 
-transition: 0.2s ease;
+box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.28);
+
+transition: 0.22s ease;
 ```
 
 }
@@ -92,7 +77,11 @@ transition: 0.2s ease;
 color: white;
 
 ```
-background: rgba(255, 255, 255, 0.07);
+background: rgba(255, 255, 255, 0.08);
+
+border-color: rgba(167, 151, 255, 0.35);
+
+transform: translateY(-1px);
 ```
 
 }
@@ -104,69 +93,83 @@ TOP CONTROLS
 .top-controls {
 display: flex;
 align-items: center;
-gap: 8px;
+gap: 9px;
 }
 
-/* DONE */
+/* =========================================
+DONE
+========================================= */
 
 .done-button {
-border: none;
+border: 1px solid rgba(167, 151, 255, 0.35);
 
 ```
-padding: 10px 18px;
+color: white;
+
+padding: 10px 19px;
 
 border-radius: 11px;
-
-color: white;
 
 font-size: 14px;
 font-weight: 700;
 
 cursor: pointer;
 
-background: linear-gradient(
-    135deg,
-    #7662ff,
-    #4dbfff
-);
+background:
+    linear-gradient(
+        135deg,
+        #7160e9,
+        #4daedb
+    );
 
 box-shadow:
-    0 5px 20px rgba(100, 100, 255, 0.22);
+    0 6px 18px rgba(65, 85, 200, 0.32);
 
-transition: 0.2s ease;
+transition: 0.22s ease;
 ```
 
 }
 
 .done-button:hover {
-transform: translateY(-1px);
+transform: translateY(-2px);
 
 ```
 box-shadow:
-    0 7px 25px rgba(100, 100, 255, 0.35);
+    0 9px 24px rgba(65, 85, 200, 0.42);
 ```
 
 }
 
-/* TOOL BUTTONS */
+/* =========================================
+COLOUR + FONT BUTTONS
+========================================= */
 
 .tool-button {
-border: 1px solid rgba(255, 255, 255, 0.09);
+border: 1px solid rgba(167, 151, 255, 0.20);
 
 ```
-background: rgba(255, 255, 255, 0.045);
+color: #dedee7;
 
-color: #c6c7d2;
+padding: 10px 14px;
 
-padding: 9px 13px;
-
-border-radius: 10px;
+border-radius: 11px;
 
 font-size: 13px;
+font-weight: 600;
 
 cursor: pointer;
 
-transition: 0.2s ease;
+background:
+    linear-gradient(
+        145deg,
+        rgba(167, 151, 255, 0.10),
+        rgba(114, 220, 255, 0.055)
+    );
+
+box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.30);
+
+transition: 0.22s ease;
 ```
 
 }
@@ -175,45 +178,57 @@ transition: 0.2s ease;
 color: white;
 
 ```
-background: rgba(255, 255, 255, 0.08);
+border-color: rgba(167, 151, 255, 0.45);
 
-border-color: rgba(167, 151, 255, 0.35);
+background:
+    linear-gradient(
+        145deg,
+        rgba(167, 151, 255, 0.17),
+        rgba(114, 220, 255, 0.10)
+    );
+
+transform: translateY(-2px);
+
+box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.40);
 ```
 
 }
 
 .tool-icon {
-margin-right: 5px;
-
-```
 color: #a797ff;
-```
-
+margin-right: 5px;
 }
 
 /* =========================================
-NOTEBOOK AREA
+EDITOR BACKGROUND
 ========================================= */
 
 .notebook-wrapper {
-
-```
 min-height: 100vh;
 
+```
 padding:
-    115px
-    30px
+    125px
+    35px
     70px;
 
 display: flex;
-
 justify-content: center;
+
+background:
+    radial-gradient(
+        circle at 15% 20%,
+        rgba(90, 70, 170, 0.08),
+        transparent 30%
+    ),
+    #111214;
 ```
 
 }
 
 /* =========================================
-NOTEBOOK
+NOTEBOOK PAGE
 ========================================= */
 
 .notebook {
@@ -221,59 +236,57 @@ NOTEBOOK
 ```
 width: min(900px, 100%);
 
-min-height: calc(100vh - 185px);
+min-height: 1050px;
 
 position: relative;
 
-background-color: #101116;
+background: #f3f0e7;
 
-border-radius: 5px;
+border-radius: 3px;
 
 overflow: hidden;
 
 box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(255, 255, 255, 0.07);
+    0 25px 70px rgba(0, 0, 0, 0.65),
+    0 2px 5px rgba(0, 0, 0, 0.35);
 
 /*
-   Notebook horizontal lines
+   Real notebook horizontal lines
 */
 
 background-image:
-    linear-gradient(
+    repeating-linear-gradient(
         to bottom,
+        transparent 0px,
         transparent 31px,
-        rgba(120, 150, 190, 0.18) 32px,
+        rgba(88, 126, 170, 0.28) 32px,
         transparent 33px
     );
-
-background-size: 100% 32px;
 ```
 
 }
 
 /* =========================================
-NOTEBOOK LEFT MARGIN
+DOUBLE RED MARGIN
 ========================================= */
 
 .notebook-margin {
-
-```
 position: absolute;
 
-left: 78px;
-
+```
 top: 0;
 bottom: 0;
 
-width: 1px;
+left: 88px;
 
-background:
-    rgba(255, 90, 110, 0.30);
+width: 8px;
+
+border-left: 2px solid rgba(190, 52, 52, 0.72);
+border-right: 2px solid rgba(190, 52, 52, 0.72);
 
 pointer-events: none;
 
-z-index: 3;
+z-index: 5;
 ```
 
 }
@@ -287,15 +300,15 @@ PAGE CONTENT
 ```
 position: relative;
 
-margin-left: 79px;
+margin-left: 96px;
 
 padding:
-    35px
-    45px
-    70px
+    38px
+    48px
+    80px
     30px;
 
-min-height: 100%;
+min-height: 1050px;
 
 z-index: 2;
 ```
@@ -316,9 +329,12 @@ outline: none;
 
 background: transparent;
 
-color: white;
+color: #17181b;
 
-font-size: 31px;
+font-family: Georgia, "Times New Roman", serif;
+
+font-size: 32px;
+
 font-weight: 700;
 
 line-height: 33px;
@@ -326,18 +342,16 @@ line-height: 33px;
 padding: 0;
 
 margin-bottom: 5px;
-
-font-family: Georgia, serif;
 ```
 
 }
 
 .poem-title::placeholder {
-color: rgba(255, 255, 255, 0.25);
+color: rgba(30, 30, 30, 0.32);
 }
 
 /* =========================================
-CONTENT
+WRITING AREA
 ========================================= */
 
 .poem-content {
@@ -345,15 +359,15 @@ CONTENT
 ```
 width: 100%;
 
-min-height: 650px;
+min-height: 850px;
 
 outline: none;
 
-color: white;
+color: #17181b;
 
-font-family: Georgia, serif;
+font-family: Georgia, "Times New Roman", serif;
 
-font-size: 18px;
+font-size: 19px;
 
 line-height: 32px;
 
@@ -361,7 +375,7 @@ white-space: pre-wrap;
 
 word-wrap: break-word;
 
-caret-color: #72dcff;
+caret-color: #5757ff;
 ```
 
 }
@@ -371,7 +385,7 @@ caret-color: #72dcff;
 ```
 content: attr(data-placeholder);
 
-color: rgba(255, 255, 255, 0.23);
+color: rgba(30, 30, 30, 0.30);
 
 pointer-events: none;
 ```
@@ -379,7 +393,7 @@ pointer-events: none;
 }
 
 /* =========================================
-TOOL MENUS
+COLOUR / FONT MENUS
 ========================================= */
 
 .tool-menu {
@@ -387,24 +401,25 @@ TOOL MENUS
 ```
 position: fixed;
 
-top: 65px;
+top: 67px;
 
 right: 28px;
 
-width: 150px;
+width: 190px;
 
-padding: 7px;
+padding: 10px;
 
-border-radius: 14px;
+border-radius: 15px;
 
-background: rgba(20, 21, 29, 0.95);
+background: rgba(23, 24, 31, 0.97);
 
 border: 1px solid rgba(255, 255, 255, 0.10);
 
 backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
 
 box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.45);
+    0 15px 45px rgba(0, 0, 0, 0.55);
 
 display: none;
 
@@ -417,36 +432,70 @@ z-index: 200;
 display: block;
 }
 
-.tool-menu button {
+/* =========================================
+COLOUR OPTIONS
+========================================= */
+
+.color-menu {
+width: 210px;
+}
+
+.color-menu button {
 
 ```
 width: 100%;
+
+display: flex;
+
+align-items: center;
+
+gap: 11px;
 
 border: none;
 
 background: transparent;
 
-color: #c9cad4;
+color: #d5d5df;
 
 text-align: left;
 
-padding: 10px 11px;
+padding: 10px;
 
-border-radius: 8px;
+border-radius: 9px;
 
 cursor: pointer;
 
 font-size: 13px;
 
-transition: 0.15s ease;
+transition: 0.16s ease;
 ```
 
 }
 
-.tool-menu button:hover {
+.color-menu button::before {
 
 ```
-background: rgba(255, 255, 255, 0.07);
+content: "";
+
+width: 17px;
+height: 17px;
+
+border-radius: 50%;
+
+background: var(--color);
+
+border: 1px solid rgba(255, 255, 255, 0.25);
+
+box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.08);
+```
+
+}
+
+.color-menu button:hover {
+
+```
+background: rgba(255, 255, 255, 0.08);
 
 color: white;
 ```
@@ -454,101 +503,7 @@ color: white;
 }
 
 /* =========================================
-MOBILE
+FONT OPTIONS
 ========================================= */
 
-@media (max-width: 650px) {
-
-```
-.editor-topbar {
-
-    padding: 0 12px;
-
-    height: 65px;
-}
-
-
-.top-controls {
-
-    gap: 4px;
-}
-
-
-.tool-button {
-
-    padding: 8px 9px;
-
-    font-size: 12px;
-}
-
-
-.done-button {
-
-    padding: 8px 12px;
-
-    font-size: 12px;
-}
-
-
-.exit-button {
-
-    padding: 8px;
-
-    font-size: 13px;
-}
-
-
-.notebook-wrapper {
-
-    padding:
-        95px
-        10px
-        30px;
-}
-
-
-.notebook {
-
-    min-height: calc(100vh - 125px);
-}
-
-
-.notebook-margin {
-
-    left: 48px;
-}
-
-
-.page-content {
-
-    margin-left: 49px;
-
-    padding:
-        30px
-        18px
-        60px
-        20px;
-}
-
-
-.poem-title {
-
-    font-size: 24px;
-}
-
-
-.poem-content {
-
-    font-size: 16px;
-
-    line-height: 32px;
-}
-
-
-.tool-menu {
-
-    right: 10px;
-}
-
-
-}
+.font-menu button
