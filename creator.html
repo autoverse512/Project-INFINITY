@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Create — Infinity</title>
+
+<link rel="stylesheet" href="creator.css">
+
+</head>
+
+<body>
+
+
+<!-- BACKGROUND GLOW -->
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+        ∞ INFINITY
+    </a>
+
+    <a href="index.html" class="back-button">
+        ← Back
+    </a>
+
+</nav>
+
+
+<!-- CREATE SECTION -->
+<main class="create-container">
+
+    <div class="create-badge">
+        ✦ AI CREATOR
+    </div>
+
+    <h1>What do you want to create?</h1>
+
+    <p class="subtitle">
+        Choose a category and bring your imagination to life.
+    </p>
+
+
+    <!-- OPTIONS -->
+    <div class="creation-options">
+
+        <!-- CARS -->
+        <button class="creation-card" onclick="selectCreation('cars')">
+
+            <div class="card-icon">🚗</div>
+
+            <div class="card-text">
+                <h2>Cars</h2>
+                <p>Design futuristic cars, supercars and more.</p>
+            </div>
+
+            <span class="arrow">→</span>
+
+        </button>
+
+
+        <!-- POETRY -->
+        <button class="creation-card" onclick="selectCreation('poetry')">
+
+            <div class="card-icon">✍️</div>
+
+            <div class="card-text">
+                <h2>Poetry & Writing</h2>
+                <p>Create poems, stories, ideas and writing.</p>
+            </div>
+
+            <span class="arrow">→</span>
+
+        </button>
+
+
+        <!-- FASHION -->
+        <button class="creation-card" onclick="selectCreation('fashion')">
+
+            <div class="card-icon">👕</div>
+
+            <div class="card-text">
+                <h2>Fashion</h2>
+                <p>Create clothing, outfits and fashion concepts.</p>
+            </div>
+
+            <span class="arrow">→</span>
+
+        </button>
+
+
+        <!-- ARTWORK -->
+        <button class="creation-card" onclick="selectCreation('artwork')">
+
+            <div class="card-icon">🎨</div>
+
+            <div class="card-text">
+                <h2>Artwork</h2>
+                <p>Turn your ideas into unique artwork.</p>
+            </div>
+
+            <span class="arrow">→</span>
+
+        </button>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    function selectCreation(type) {
+
+        console.log("Selected creation:", type);
+
+        // We'll add the next step here later.
+        // For now, this only detects which option was selected.
+
+    }
+
+</script>
+
+</body>
+
+</html>
 
