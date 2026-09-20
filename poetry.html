@@ -20,29 +20,23 @@
 <!-- TOP BAR -->
 <header class="editor-topbar">
 
-    <!-- EXIT -->
     <button class="exit-button" onclick="window.location.href='creator.html'">
         ← Exit
     </button>
 
-
-    <!-- RIGHT CONTROLS -->
     <div class="top-controls">
 
-        <!-- DONE -->
         <button class="done-button" id="doneButton">
             Done
         </button>
 
-        <!-- COLOUR -->
         <button class="tool-button" id="colorButton">
-            <span class="tool-icon">●</span>
+            <span class="color-preview"></span>
             Colour
         </button>
 
-        <!-- FONT -->
         <button class="tool-button" id="fontButton">
-            <span class="tool-icon">Aa</span>
+            <span class="font-preview">Aa</span>
             Font
         </button>
 
@@ -54,40 +48,85 @@
 <!-- COLOUR MENU -->
 <div class="tool-menu color-menu" id="colorMenu">
 
-    <button data-color="#17181b">Black</button>
-    <button data-color="#ffffff">White</button>
-    <button data-color="#635bff">Purple</button>
-    <button data-color="#1597e5">Blue</button>
-    <button data-color="#d94b65">Red</button>
-    <button data-color="#198754">Green</button>
-    <button data-color="#c58b20">Gold</button>
+    <button class="color-option" data-color="#171717">
+        <span class="color-dot black"></span>
+        Black
+    </button>
+
+    <button class="color-option" data-color="#ffffff">
+        <span class="color-dot white"></span>
+        White
+    </button>
+
+    <button class="color-option" data-color="#665cff">
+        <span class="color-dot purple"></span>
+        Purple
+    </button>
+
+    <button class="color-option" data-color="#269bd7">
+        <span class="color-dot blue"></span>
+        Blue
+    </button>
+
+    <button class="color-option" data-color="#d94b5f">
+        <span class="color-dot red"></span>
+        Red
+    </button>
+
+    <button class="color-option" data-color="#278653">
+        <span class="color-dot green"></span>
+        Green
+    </button>
+
+    <button class="color-option" data-color="#c18a27">
+        <span class="color-dot gold"></span>
+        Gold
+    </button>
 
 </div>
+
 
 <!-- FONT MENU -->
 <div class="tool-menu font-menu" id="fontMenu">
 
-    <button data-font="Georgia">Classic</button>
-    <button data-font="Arial">Modern</button>
-    <button data-font="'Courier New'">Typewriter</button>
-    <button data-font="'Trebuchet MS'">Clean</button>
-    <button data-font="'Times New Roman'">Literary</button>
+    <button data-font="Georgia, serif">
+        Classic
+    </button>
+
+    <button data-font="Arial, sans-serif">
+        Modern
+    </button>
+
+    <button data-font="'Courier New', monospace">
+        Typewriter
+    </button>
+
+    <button data-font="'Trebuchet MS', sans-serif">
+        Clean
+    </button>
+
+    <button data-font="'Times New Roman', serif">
+        Literary
+    </button>
 
 </div>
+
 
 <!-- NOTEBOOK -->
 <main class="notebook-wrapper">
 
     <section class="notebook">
 
-        <!-- LEFT MARGIN -->
-        <div class="notebook-margin"></div>
+        <!-- REAL NOTEBOOK MARGIN -->
+        <div class="notebook-margin">
+            <div class="margin-line line-one"></div>
+            <div class="margin-line line-two"></div>
+        </div>
 
 
-        <!-- PAGE CONTENT -->
+        <!-- PAGE -->
         <div class="page-content">
 
-            <!-- HEADING -->
             <input
                 type="text"
                 id="poemTitle"
@@ -96,8 +135,6 @@
                 maxlength="120"
             >
 
-
-            <!-- WRITING AREA -->
             <div
                 id="poemContent"
                 class="poem-content"
